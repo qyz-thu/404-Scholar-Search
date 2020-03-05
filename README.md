@@ -12,7 +12,7 @@ If you haven't installed Vue CLI, first install node.js, then use following inst
     npm install -g @vue/cli  
 
 Our current frontpage should look like this:  
-<img src="./Homepage.png">  
+<img alt="snapshot of home page" src="./Homepage.jpg">  
 
 Our result page should look like this:
-<img src="./result_page.png">
+<img alt="snapshot of result page" src="./result_page.png">
