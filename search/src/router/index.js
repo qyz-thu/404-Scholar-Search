@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import Homepage from '@/components/Homepage'
+import HelloWorld from '../components/HelloWorld'
+import Homepage from '../components/Homepage'
 import Result from "../components/Result";
 
 Vue.use(Router);

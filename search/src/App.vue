@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-<!--    <img src="./assets/logo.png">-->
+  <div id="app" >
+    <img src="./assets/new_logo.png" width="40%" style="margin-top: 40px">
     <router-view/>
   </div>
 </template>
@@ -18,6 +18,17 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  /*margin-top: 60px;*/
+  bottom: 0;
+  top: 0;
+  background-color: antiquewhite;
+  height: 100%;
+}
+.head {
+  background-color: antiquewhite;
+}
+.main_body {
+  background: linear-gradient(antiquewhite, white);
+  height: 100%;
 }
 </style>

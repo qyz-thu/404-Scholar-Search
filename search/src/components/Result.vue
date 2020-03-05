@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="main_body">
     <h1>This is a result page</h1>
     <br><br>
-    <p>You have searched for {{query}}</p><br>
+    <p>You have searched for {{query}}</p><br><br><br>
     <button type="button" class="buttons" v-on:click="backHome">Return</button>
   </div>
 </template>
