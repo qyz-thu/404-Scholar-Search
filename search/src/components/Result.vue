@@ -1,7 +1,8 @@
 <template>
   <div class="main_body">
-    <p>You have searched for {{query}}</p>
-    <button type="button" class="buttons" v-on:click="backHome">Return</button>
+    <input class='search' v-model="new_query" placeholder="What do you want to know?">
+    <button class="buttons" type="button" v-on:click="newSearch">Search!</button>
+    <br><br>
     <table style="width: 100%; text-align: left">
       <tr>
         <td style="width: 20%; text-align: left; padding-left: 30px">
@@ -28,23 +29,29 @@
   const Results = ["Attention is all you need", "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
   "Improving Language Understanding by Generative Pre-Training"];
   const Times = ["全部时间", "最近一年", "最近半年", "最近一月"];
-
+  const max_query_length = 36;
 
   export default {
     name: 'Result',
     components: {ResultEntry},
-    data: function() {
+    data: function () {
       return {
         query: this.$route.params.query,
         results: Results,
-        times: Times
+        times: Times,
+        new_query: ''
       }
     },
     methods: {
-      backHome: function () {
-          this.$router.push('../');
+      newSearch: function () {
+        if (this.new_query === "")
+          alert("you have entered nothing!");
+        else {
+          if (this.new_query.length >= max_query_length)
+            this.new_query = this.new_query.substr(0, max_query_length);   // truncate overly long queries
+          this.$router.push('/result/' + this.new_query);
+        }
       }
     }
   }
-
 </script>

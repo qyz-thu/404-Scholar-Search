@@ -44,9 +44,9 @@
     .search {width: 40%; margin-top: 10px;  line-height: 30px; border-radius: 5px}
     .buttons {
       width: 100px;
-      height: 50px;
+      height: 35px;
       /*margin-bottom: 150px;*/
-      font-size: 18px;
+      font-size: 16px;
       font-weight: bold;
       color: white;
       border-radius: 6px;
