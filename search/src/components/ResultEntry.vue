@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p><b>{{title}}</b><br>  Abstract: {{abstract}} </p>
+    <p><b><a v-on:click="toDetail">{{title}}</a></b><br>  Abstract: {{abstract}} </p>
   </div>
 </template>
 
@@ -12,6 +12,12 @@
       return {
        // title: "",
        // abstract: ""
+      }
+    },
+    methods: {
+      toDetail: function () {
+        this.$router.push('../detail/' + this.title);
+
       }
     }
   }
