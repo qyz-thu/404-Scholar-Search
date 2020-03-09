@@ -12,7 +12,9 @@
           </p>
         </td>
         <td style="width: 60%; text-align: left; padding-top: 0">
-            <ResultEntry v-for="res in results" v-bind:title="res" abstract="some abstract"></ResultEntry>
+            <ResultEntry v-for="paper in papers" v-bind:key="paper.title" v-bind:title="paper.title"
+                         time="xxxx-xx-xx" author="somebody et.al" v-bind:abstract="paper.abstract">
+            </ResultEntry>
         </td>
         <td style="width: 20%">
           something else<br>
@@ -28,6 +30,12 @@
   import ResultEntry from "./ResultEntry";
   const Results = ["Attention is all you need", "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
   "Improving Language Understanding by Generative Pre-Training"];
+  const Papers = [{title: 'Attention is all you need', abstract: 'The dominant sequence transduction models are based on complex recurrent orconvolutional neural networks in an encoder and decoder configuration. The best performing such models also connect the encoder and decoder through an attentionm echanisms. We propose a novel, simple network architecture based solely onan attention mechanism, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show these models to be superiorin quality while being more parallelizable and requiring significantly less timeto train. Our single model with 165 million parameters, achieves 27.5 BLEU onEnglish-to-German translation, improving over the existing best ensemble result by over 1 BLEU. On English-to-French translation, we outperform the previoussingle state-of-the-art with model by 0.7 BLEU, achieving a BLEU score of 41.1.'.substr(0, 100)},
+    {title: "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding", abstract: 'We introduce a new language representation model called BERT, which stands for' +
+        'Bidirectional Encoder Representations from Transformers. Unlike recent language' +
+        'representation models, BERT is designed to pre-train deep bidirectional representations …',},
+    {title: "Improving Language Understanding by Generative Pre-Training", abstract: "This paper presents GPT"}
+  ];
   const Times = ["全部时间", "最近一年", "最近半年", "最近一月"];
   const max_query_length = 36;
 
@@ -39,7 +47,8 @@
         query: this.$route.params.query,
         results: Results,
         times: Times,
-        new_query: ''
+        new_query: this.$route.params.query,
+        papers: Papers
       }
     },
     methods: {
