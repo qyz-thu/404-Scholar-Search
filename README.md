@@ -15,7 +15,7 @@ Our current frontpage should look like this:
 <img alt="snapshot of home page" src="./Homepage.png">  
 
 Our result page should look like this:
-<img alt="snapshot of result page" src="./result_page.jpg">
+<img alt="snapshot of result page" src="./result_page.png">
 
 Our detail page should look like this:  
 <img alt="snapshot of result page" src="./detail_page.png">
