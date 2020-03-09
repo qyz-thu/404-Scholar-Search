@@ -6,10 +6,10 @@
     <table style="width: 100%; text-align: left">
       <tr>
         <td style="width: 20%; text-align: left; padding-left: 30px">
-          <b>选择时间范围：</b>
-          <p v-for="t in times">
+          <b style="font-size: 17px">选择时间范围：</b><br><br>
+          <a href="#" style="font-size: 15px" v-for="t in times">
             {{t}}<br>
-          </p>
+          </a>
         </td>
         <td style="width: 60%; text-align: left; padding-top: 0">
             <ResultEntry v-for="paper in papers" v-bind:key="paper.title" v-bind:title="paper.title"
