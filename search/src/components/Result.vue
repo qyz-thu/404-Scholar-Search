@@ -6,9 +6,11 @@
     <table style="width: 100%; text-align: left">
       <tr>
         <td style="width: 20%; text-align: left; padding-left: 30px">
-          <b style="font-size: 17px">选择时间范围：</b><br><br>
-          <a href="#" style="font-size: 15px" v-for="t in times">
-            {{t}}<br>
+          <p>当前时间范围：{{timespans}}</p>
+          <b style="font-size: 17px; line-height: 25px">选择时间范围：</b><br>
+          <a :href="'#/result/' + query + '/' + t.en" style="font-size: 15px; line-height: 25px" v-for="t in times"
+          v-on:click="updateTime(t.en)">
+            {{t.ch}}<br>
           </a>
         </td>
         <td style="width: 60%; text-align: left; padding-top: 0">
@@ -16,7 +18,7 @@
                          time="xxxx-xx-xx" author="somebody et.al" v-bind:abstract="paper.abstract">
             </ResultEntry>
         </td>
-        <td style="width: 20%">
+        <td style="width: 20%; margin-left: 20px">
           something else<br>
           lalala
         </td>
@@ -36,7 +38,8 @@
         'representation models, BERT is designed to pre-train deep bidirectional representations …',},
     {title: "Improving Language Understanding by Generative Pre-Training", abstract: "This paper presents GPT"}
   ];
-  const Times = ["全部时间", "最近一年", "最近半年", "最近一月"];
+  const Times = [{ch: "全部时间", en: "all-time"}, {ch: "最近一年", en: "last-year"},
+    {ch: "最近半年", en: "last-half-year"}, {ch: "最近一月", en: "last-month"}, {ch: "最近一周", en: "last-week"}];
   const max_query_length = 36;
 
   export default {
@@ -48,7 +51,8 @@
         results: Results,
         times: Times,
         new_query: this.$route.params.query,
-        papers: Papers
+        papers: Papers,
+        timespans: this.$route.params.timespan
       }
     },
     methods: {
@@ -60,6 +64,9 @@
             this.new_query = this.new_query.substr(0, max_query_length);   // truncate overly long queries
           this.$router.push('/result/' + this.new_query);
         }
+      },
+      updateTime: function (en_time) {
+        this.timespans = en_time;
       }
     }
   }

@@ -31,7 +31,7 @@
               else {
                 if (this.query.length >= max_query_len)
                   this.query = this.query.substr(0, max_query_len);   // truncate overly long queries
-                this.$router.push('/result/' + this.query);
+                this.$router.push('/result/' + this.query + '/all-time');
               }
           }
       }

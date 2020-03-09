@@ -18,8 +18,8 @@
       }
     },
     methods: {
-      toDetail: function () {
-        this.$router.push('../detail/' + this.title);
+      toDetail: function () { // this function is currently of no effect
+        //this.$router.push('../detail/' + this.title);
 
       }
     }

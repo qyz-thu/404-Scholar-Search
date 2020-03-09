@@ -20,7 +20,7 @@ export default new Router({
       component: Homepage
     },
     {
-      path: '/result/:query',
+      path: '/result/:query/:timespan',
       name: 'Result',
       component: Result
     },
