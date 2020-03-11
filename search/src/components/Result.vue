@@ -81,6 +81,7 @@
         date1 = date1.slice(0, 4) + date1.slice(5, 7) + date1.slice(8, 10);
         date2 = date2.slice(0, 4) + date2.slice(5, 7) + date2.slice(8, 10);
         console.log(date1);
+        console.log(date2);
         if (date1 !== "" && date2 !== "" && date1 < date2)
         {
           this.timespans = date1 + '-' + date2;
