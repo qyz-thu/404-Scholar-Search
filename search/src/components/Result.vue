@@ -5,19 +5,26 @@
     <br><br>
     <table style="width: 100%; text-align: left">
       <tr>
-        <td style="width: 20%; text-align: left; padding-left: 30px">
+        <td style="width: 20%; text-align: center; padding-right: 30px">
           <p>当前时间范围：{{timespans}}</p>
+
+          <input type="date" id="date1" /><br>
+          <input type="date" id="date2"/><br>
+          <button type="button" v-on:click="selectTime">选择</button><br><br>
+
           <b style="font-size: 17px; line-height: 25px">选择时间范围：</b><br>
           <a :href="'#/result/' + query + '/' + t.en" style="font-size: 15px; line-height: 25px" v-for="t in times"
           v-on:click="updateTime(t.en)">
             {{t.ch}}<br>
           </a>
         </td>
+
         <td style="width: 60%; text-align: left; padding-top: 0">
             <ResultEntry v-for="paper in papers" v-bind:key="paper.title" v-bind:title="paper.title"
                          time="xxxx-xx-xx" author="somebody et.al" v-bind:abstract="paper.abstract">
             </ResultEntry>
         </td>
+
         <td style="width: 20%; margin-left: 20px">
           something else<br>
           lalala
@@ -62,11 +69,26 @@
         else {
           if (this.new_query.length >= max_query_length)
             this.new_query = this.new_query.substr(0, max_query_length);   // truncate overly long queries
-          this.$router.push('/result/' + this.new_query);
+          this.$router.push('/result/' + this.new_query + '/' + this.timespans);
         }
       },
       updateTime: function (en_time) {
         this.timespans = en_time;
+      },
+      selectTime: function () {
+        let date1 = document.getElementById("date1").value;
+        let date2 = document.getElementById("date2").value;
+        date1 = date1.slice(0, 4) + date1.slice(5, 7) + date1.slice(8, 10);
+        date2 = date2.slice(0, 4) + date2.slice(5, 7) + date2.slice(8, 10);
+        console.log(date1);
+        if (date1 !== "" && date2 !== "" && date1 < date2)
+        {
+          this.timespans = date1 + '-' + date2;
+          this.$router.push("./" + date1 + '-' + date2);
+        }
+        else
+          alert("Invalid date input!");
+
       }
     }
   }
