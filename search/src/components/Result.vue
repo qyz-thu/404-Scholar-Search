@@ -19,10 +19,18 @@
           </a>
         </td>
 
-        <td style="width: 60%; text-align: left; padding-top: 0">
-            <ResultEntry v-for="paper in papers" v-bind:key="paper.title" v-bind:title="paper.title"
+        <td v-if="isPaper" style="width: 60%; text-align: left; padding-top: 0">
+            <ResultEntry v-for="paper in papers" v-bind:is-paper="isPaper" v-bind:key="paper.title" v-bind:title="paper.title"
                          time="xxxx-xx-xx" author="somebody et.al" v-bind:abstract="paper.abstract">
+              This is a paper
             </ResultEntry>
+
+        </td>
+        <td v-else style="width: 60%; text-align: left; padding-top: 0">
+          <ResultEntry v-for="people in results" v-bind:key="people.name" v-bind:name="people.name"
+                       v-bind:research_field="people.researchFields">
+            This is a person
+          </ResultEntry>
         </td>
 
         <td style="width: 20%; margin-left: 20px">
@@ -52,14 +60,17 @@
   export default {
     name: 'Result',
     components: {ResultEntry},
+    //props: ['results'],
     data: function () {
       return {
         query: this.$route.params.query,
-        results: Results,
+        results: [],
         times: Times,
         new_query: this.$route.params.query,
         papers: Papers,
-        timespans: this.$route.params.timespan
+        timespans: this.$route.params.timespan,
+        isPaper: false,
+
       }
     },
     methods: {
@@ -91,6 +102,12 @@
           alert("Invalid date input!");
 
       }
+    },
+    mounted() {
+      this.$axios
+        .get('http://127.0.0.1:8080/query?name=JhonSmith')
+        .then(response => (this.results = [response.data]))
+        .catch(error => (console.log(error)))
     }
   }
 </script>
