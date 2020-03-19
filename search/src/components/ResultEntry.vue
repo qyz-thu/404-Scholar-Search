@@ -7,14 +7,15 @@
   </div>
   <div v-else style="padding: 10px">
     <b style="font-size: 18px"><a :href="'#/detail/' + name" v-on:click="toDetail">{{name}}</a></b><br>
-    This should show a people
+    <div style="color: grey">Research fields: <b v-for="f in research_field" v-bind:key="f">{{f}}</b></div>
+    <div style="color: grey">Co-authors:<b v-for="a in co_authors" v-bind:key="a">{{a}}</b> </div>
   </div>
 </template>
 
 <script>
   export default {
     name: 'ResultEntry',
-    props: ['isPaper', 'abstract', 'title', 'time', 'author', 'name', 'research_field',],
+    props: ['isPaper', 'abstract', 'title', 'time', 'author', 'name', 'research_field', 'co_authors'],
     // props: {
     //   isPaper: Boolean,
     //   abstract: String,

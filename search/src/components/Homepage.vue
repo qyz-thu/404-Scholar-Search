@@ -31,17 +31,6 @@
               else {
                 if (this.query.length >= max_query_len)
                   this.query = this.query.substr(0, max_query_len);   // truncate overly long queries
-                const httpRequest = new XMLHttpRequest();
-                httpRequest.open('GET', 'http://127.0.0.1:8080/query?name=JameSmith', true);
-                httpRequest.send();
-                httpRequest.onreadystatechange = function () {
-                  if (httpRequest.readyState === 4 && httpRequest.status === 200)
-                  {
-                    const data = httpRequest.responseText;
-                    //console.log(data);
-                  }
-                };
-                //this.$emit('results', data);
                 this.$router.push('/result/' + this.query + '/all-time');
 
               }

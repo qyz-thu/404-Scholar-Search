@@ -28,7 +28,7 @@
         </td>
         <td v-else style="width: 60%; text-align: left; padding-top: 0">
           <ResultEntry v-for="people in results" v-bind:key="people.name" v-bind:name="people.name"
-                       v-bind:research_field="people.researchFields">
+                       v-bind:research_field="people.researchFields" >
             This is a person
           </ResultEntry>
         </td>
@@ -81,6 +81,8 @@
           if (this.new_query.length >= max_query_length)
             this.new_query = this.new_query.substr(0, max_query_length);   // truncate overly long queries
           this.$router.push('/result/' + this.new_query + '/' + this.timespans);
+          this.$axios.get('http://127.0.0.1:8080/query?name=' + this.new_query)
+            .then(response => (this.results = [response.data]))
         }
       },
       updateTime: function (en_time) {
@@ -105,7 +107,7 @@
     },
     mounted() {
       this.$axios
-        .get('http://127.0.0.1:8080/query?name=JhonSmith')
+        .get('http://127.0.0.1:8080/query?name=' + this.query)
         .then(response => (this.results = [response.data]))
         .catch(error => (console.log(error)))
     }
