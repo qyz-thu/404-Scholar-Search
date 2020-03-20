@@ -15,7 +15,10 @@ Our current frontpage should look like this:
 <img alt="snapshot of home page" src="./Homepage.png">  
 
 Our result page should look like this:
-<img alt="snapshot of result page" src="./result_page.png">
+<img alt="snapshot of result page" src="./result_page.jpg">
 
 Our detail page should look like this:  
-<img alt="snapshot of result page" src="./detail_page.png">
+<img alt="snapshot of result page" src="./detail_page.jpg">
+
+  
+**Note**: Current version uses http api provided by backend on local host. Please refer to https://github.com/SigmaTsing/404-backend/tree/develop for details. 
