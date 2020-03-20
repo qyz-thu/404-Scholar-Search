@@ -107,9 +107,10 @@
     },
     mounted() {
       this.$axios
-        .get('http://127.0.0.1:8080/query?name=' + this.query)
-        .then(response => (this.results = [response.data]))
-        .catch(error => (console.log(error)))
+        .get('http://127.0.0.1:8080/search?keyword=' + this.query + '123&keytype=author')
+        .then(response => (this.results = response.data.result))
+        .catch(error => (console.log(error)));
+      //console.log(this.results);
     }
   }
 </script>
