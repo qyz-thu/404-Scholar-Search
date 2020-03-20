@@ -55,5 +55,11 @@
       background-image: linear-gradient(#8ee4ff, #6bcaff);
 
     }
+    table {
+    width: 100%; text-align: left
+    }
+  td.right {
+    width: 20%; margin-left: 20px
+  }
 
 </style>
