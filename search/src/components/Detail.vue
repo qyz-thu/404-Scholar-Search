@@ -8,16 +8,21 @@
           <p v-for="field in research_fields">{{field}}</p>
         </td>
 
-        <td style="width: 60%; text-align: left; padding-top: 0">
+        <td style="width: 50%; text-align: left; padding-top: 0">
           <ResultEntry v-for="paper in papers" v-bind:key="paper.title"
             :is-paper="true" v-bind:title="paper.title" v-bind:field="paper.fields"
           v-bind:time="paper.time" v-bind:author="paper.authors">
           </ResultEntry>
         </td>
 
-        <td style="width: 20%; margin-left: 20px">
+        <td style="width: 30%; margin-left: 20px">
           <p><b>Co-authors:</b></p>
-          <p v-for="ca in split_authors">{{ca}}</p>
+          <p v-for="ca in co_authors">
+            Name: <a><b>{{ca.name}}</b></a><br>
+            Similarity: {{ca.similarity}}<br>
+            Number: {{ca.num}}<br>
+            <br>
+          </p>
         </td>
       </tr>
     </table>
@@ -40,9 +45,9 @@
       }
     },
     computed: {
-      split_authors: function () {
-        return this.co_authors[0].split(',').map(s => s.trim());
-      }
+      // split_authors: function () {
+      //   return this.co_authors[0].split(',').map(s => s.trim());
+      // }
     },
     beforeMount() {
       this.$axios
