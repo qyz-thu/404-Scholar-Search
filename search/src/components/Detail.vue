@@ -51,7 +51,7 @@
     },
     beforeMount() {
       this.$axios
-        .get("http://127.0.0.1:8080/query?name=" + this.title)
+        .get("http://123.57.231.102:8080/query?name=" + this.title)
         .then(response =>{
           this.http_data = response.data;
           this.co_authors = response.data.result.co_authors;
