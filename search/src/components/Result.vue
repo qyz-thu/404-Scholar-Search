@@ -1,9 +1,9 @@
 <template>
-  <div class="main_body">
+  <div class="main_body" style=" height: 150%">
     <input class='search' v-model="new_query" placeholder="What do you want to know?">
     <button class="buttons" type="button" v-on:click="newSearch">Search!</button>
     <br><br>
-    <table style="width: 100%; text-align: left">
+    <table style="width: 100%; text-align: left;">
       <tr>
         <td style="width: 20%; text-align: center; padding-right: 30px">
           <p>当前时间范围：{{timespans}}</p>
@@ -81,12 +81,12 @@
           if (this.new_query.length >= max_query_length)
             this.new_query = this.new_query.substr(0, max_query_length);   // truncate overly long queries
           this.$router.push('/result/' + this.new_query + '/' + this.timespans);
-          console.log(this.new_query);
+          // console.log(this.new_query);
           this.$axios.get('http://123.57.231.102:8080/search?keyword=' + this.new_query + '&keytype=author')
             .then(response => {
-              console.log(response);
+              // console.log(response);
               this.results = response.data.result;
-              console.log(this.results);
+              // console.log(this.results);
             })
         }
       },
@@ -98,8 +98,8 @@
         let date2 = document.getElementById("date2").value;
         date1 = date1.slice(0, 4) + date1.slice(5, 7) + date1.slice(8, 10);
         date2 = date2.slice(0, 4) + date2.slice(5, 7) + date2.slice(8, 10);
-        console.log(date1);
-        console.log(date2);
+        // console.log(date1);
+        // console.log(date2);
         if (date1 !== "" && date2 !== "" && date1 < date2)
         {
           this.timespans = date1 + '-' + date2;

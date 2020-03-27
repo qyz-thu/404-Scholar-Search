@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <p style="font-size: 25px">{{title}}</p><br>
-    <table style="width: 100%; text-align: left">
+  <div class="main_body">
+    <p style="font-size: 28px">{{title}}</p><br>
+    <table style="width: 100%; text-align: left; ">
       <tr>
         <td style="width: 20%; text-align: center; padding-right: 30px">
           <p><b>Research Fields:</b></p>
@@ -9,10 +9,8 @@
         </td>
 
         <td style="width: 50%; text-align: left; padding-top: 0">
-          <ResultEntry v-for="paper in papers" v-bind:key="paper.title"
-            :is-paper="true" v-bind:title="paper.title" v-bind:field="paper.fields"
-          v-bind:time="paper.time" v-bind:author="paper.authors">
-          </ResultEntry>
+          <PageSelector v-bind:entries="papers">
+          </PageSelector>
         </td>
 
         <td style="width: 30%; margin-left: 20px">
@@ -31,9 +29,10 @@
 
 <script>
   import ResultEntry from "./ResultEntry";
+  import PageSelector from "./PageSelector";
   export default {
     name: 'Detail',
-    components: {ResultEntry},
+    components: {PageSelector, ResultEntry},
     data: function () {
       return {
         isPaper: false,
@@ -55,11 +54,15 @@
         .then(response =>{
           this.http_data = response.data;
           this.co_authors = response.data.result.co_authors;
+          if (this.co_authors.length > 3)
+            this.co_authors = this.co_authors.slice(0, 3);
           this.research_fields = response.data.result.researchFields;
+          if (this.research_fields.length > 3)
+            this.research_fields = this.research_fields.slice(0, 3);
           this.papers = response.data.result.papers;
-          console.log(this.co_authors);
-          console.log(this.research_fields);
-          console.log(this.papers);
+          //console.log(this.co_authors);
+          //console.log(this.research_fields);
+          //console.log(this.papers);
         })
         .catch(error =>(console.log(error)));
     },

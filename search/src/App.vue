@@ -29,6 +29,6 @@ export default {
 }
 .main_body {
   background: linear-gradient(antiquewhite, white);
-  height: 100%;
+  height: 140%;
 }
 </style>

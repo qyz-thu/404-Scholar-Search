@@ -19,16 +19,7 @@
   export default {
     name: 'ResultEntry',
     props: ['isPaper', 'abstract', 'title', 'time', 'author', 'name', 'research_field', 'co_authors', 'field'],
-    // props: {
-    //   isPaper: Boolean,
-    //   abstract: String,
-    //   title: String,
-    //   time: String,
-    //   author: String,
-    //   name: String,
-    //   research_fields: ,
-    //
-    // }
+
     data: function () {
       return {
        // title: "",
@@ -38,7 +29,6 @@
     methods: {
       toDetail: function () { // this function is currently of no effect
         //this.$router.push('../detail/' + this.title);
-
       }
     }
   }
