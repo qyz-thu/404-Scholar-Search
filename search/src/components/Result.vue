@@ -81,8 +81,13 @@
           if (this.new_query.length >= max_query_length)
             this.new_query = this.new_query.substr(0, max_query_length);   // truncate overly long queries
           this.$router.push('/result/' + this.new_query + '/' + this.timespans);
+          console.log(this.new_query);
           this.$axios.get('http://123.57.231.102:8080/search?keyword=' + this.new_query + '&keytype=author')
-            .then(response => (this.results = [response.data]))
+            .then(response => {
+              console.log(response);
+              this.results = response.data.result;
+              console.log(this.results);
+            })
         }
       },
       updateTime: function (en_time) {
