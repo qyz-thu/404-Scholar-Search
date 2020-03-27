@@ -9,7 +9,7 @@
         </td>
 
         <td style="width: 50%; text-align: left; padding-top: 0">
-          <PageSelector v-bind:entries="papers">
+          <PageSelector v-bind:entries="papers" v-bind:is-paper="true">
           </PageSelector>
         </td>
 

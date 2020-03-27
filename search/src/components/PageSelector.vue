@@ -1,12 +1,20 @@
 <template xmlns="http://www.w3.org/1999/html">
   <div>
-    <p>
+    <p v-if="isPaper">
       <ResultEntry v-for="paper in current_page" v-bind:key="paper.title"
                    :is-paper="true" v-bind:title="paper.title" v-bind:field="paper.fields"
                    v-bind:time="paper.time" v-bind:author="paper.authors">
         {{paper}}
       </ResultEntry>
     </p>
+
+    <p v-else>
+                <ResultEntry v-for="people in entries" v-bind:key="people.name" v-bind:name="people.name"
+                             v-bind:research_field="people.researchFields" >
+                  This is a person
+                </ResultEntry>
+    </p>
+
     <p style="text-align: center">
       <a v-on:click="toNext" v-if='has_next' class="click_text">Next</a>&nbsp &nbsp
       <a v-on:click="toPrevious" v-if='has_previous' class="click_text">Previous</a>
@@ -15,6 +23,7 @@
     </label>页
       <a v-on:click="goTo" class="click_text">Go</a>
     </p>
+
   </div>
 </template>
 
@@ -24,7 +33,7 @@
   export default {
       name: "PageSelector",
       components: {ResultEntry, },
-      props: ['entries'],
+      props: ['entries', "isPaper"],
       data: function () {
           return {
             page_size: 6,
