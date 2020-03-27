@@ -2,10 +2,10 @@
   <div class="main_body">
     <p style="font-size: 28px">{{title}}</p><br>
     <table style="width: 100%; text-align: left; ">
-      <tr>
+      <tr style="vertical-align: top">
         <td style="width: 20%; text-align: center; padding-right: 30px">
-          <p><b>Research Fields:</b></p>
-          <p v-for="field in research_fields">{{field}}</p>
+          <p style="font-size: 20px">Research Fields:</p>
+          <p v-for="field in research_fields"><b>{{field}}</b></p>
         </td>
 
         <td style="width: 50%; text-align: left; padding-top: 0">
@@ -14,7 +14,7 @@
         </td>
 
         <td style="width: 30%; margin-left: 20px">
-          <p><b>Co-authors:</b></p>
+          <p style="font-size: 20px">Co-authors:</p>
           <p v-for="ca in co_authors">
             Name: <a><b>{{ca.name}}</b></a><br>
             Similarity: {{ca.similarity}}<br>
