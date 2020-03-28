@@ -9,7 +9,7 @@
         </td>
 
         <td style="width: 50%; text-align: left; padding-top: 0">
-          <PageSelector v-bind:entries="papers" v-bind:is-paper="true">
+          <PageSelector @update='update' v-bind:entries="papers" v-bind:is-paper="true">
           </PageSelector>
         </td>
 
@@ -40,7 +40,7 @@
         co_authors: [","],
         research_fields: [],
         papers: [],
-        http_data: [],
+        //http_data: [],
       }
     },
     computed: {
@@ -52,14 +52,18 @@
       this.$axios
         .get("http://123.57.231.102:8080/query?name=" + this.title)
         .then(response =>{
-          this.http_data = response.data;
-          this.co_authors = response.data.result.co_authors;
-          if (this.co_authors.length > 3)
-            this.co_authors = this.co_authors.slice(0, 3);
-          this.research_fields = response.data.result.researchFields;
-          if (this.research_fields.length > 3)
-            this.research_fields = this.research_fields.slice(0, 3);
-          this.papers = response.data.result.papers;
+          //this.http_data = response.data;
+          console.log(response.data);
+          if (response.data.status === "success")
+          {
+            this.co_authors = response.data.result.co_authors;
+            if (this.co_authors.length > 3)
+              this.co_authors = this.co_authors.slice(0, 3);
+            this.research_fields = response.data.result.researchFields;
+            if (this.research_fields.length > 3)
+              this.research_fields = this.research_fields.slice(0, 3);
+            this.papers = response.data.result.papers;
+          }
           //console.log(this.co_authors);
           //console.log(this.research_fields);
           //console.log(this.papers);
@@ -67,15 +71,35 @@
         .catch(error =>(console.log(error)));
     },
     mounted() {
+    },
+    methods: {
+      update: function (aut) {
+        console.log("update author to " + aut);
+        this.$axios
+        .get("http://123.57.231.102:8080/query?name=" + aut)
+        .then(response => {
+          console.log(response.data);
+          if (response.data.status === "success")
+          {
+            this.co_authors = response.data.result.co_authors;
+            if (this.co_authors.length > 3)
+              this.co_authors = this.co_authors.slice(0, 3);
+            this.research_fields = response.data.result.researchFields;
+            if (this.research_fields.length > 3)
+              this.research_fields = this.research_fields.slice(0, 3);
+            this.papers = response.data.result.papers;
+            this.title = aut;
+          }
+          else {
+            this.co_authors = [];
+            this.research_fields = [];
+            this.papers = [];
+            this.title = "Sorry, we can't find this author right now";
+          }
 
-      //console.log(this.http_data);
-      // if (data.status === "status")
-      // {
-      //   this.co_authors = data.co_authors;
-      //   this.papers = data.papers;
-      //   this.research_fields = data.researchFields;
-      // }
-
+          // this.$forceUpdate();
+        })
+      }
     }
 
   }

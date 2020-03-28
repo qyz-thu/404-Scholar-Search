@@ -1,7 +1,7 @@
 <template xmlns="http://www.w3.org/1999/html">
   <div>
     <p v-if="isPaper">
-      <ResultEntry v-for="paper in current_page" v-bind:key="paper.title"
+      <ResultEntry @change_author="change_author" v-for="paper in current_page" v-bind:key="paper.title"
                    :is-paper="true" v-bind:title="paper.title" v-bind:field="paper.fields"
                    v-bind:time="paper.time" v-bind:author="paper.authors">
         {{paper}}
@@ -9,12 +9,12 @@
     </p>
 
     <p v-else>
-                <ResultEntry v-for="people in entries" v-bind:key="people.name" v-bind:name="people.name"
+                <ResultEntry @change_author="change_author" v-for="people in entries" v-bind:key="people.name" v-bind:name="people.name"
                              v-bind:research_field="people.researchFields" >
                   This is a person
                 </ResultEntry>
     </p>
-
+    <br>
     <p style="text-align: center">
       <a v-on:click="toNext" v-if='has_next' class="click_text">Next</a>&nbsp &nbsp
       <a v-on:click="toPrevious" v-if='has_previous' class="click_text">Previous</a>
@@ -80,7 +80,11 @@
             this.page_input = 1;
           }
           else this.page_index = Number(this.page_input) - 1;
-        }
+        },
+      change_author: function (aut) {
+        console.log("change author to " + aut);
+        this.$emit('update', aut);
+      }
     },
     }
 </script>

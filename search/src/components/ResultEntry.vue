@@ -3,10 +3,10 @@
     <b style="font-size: 18px"><a :href="'#/detail/' + title" v-on:click="toDetail">{{title}}</a></b><br>
     <div style="color: grey">
       <b>Time</b>: {{time}} &nbsp
-      <b>Author</b>: <a v-for="aut in author">{{aut}} </a>
+      <b>Field</b>: <a v-for="f in field">{{f}}</a>
       <br>
+      <b>Author</b>: <span v-for="aut in author"><a v-on:click="click_author(aut)" :href="'#/detail/' + aut">{{aut}}</a>&nbsp &nbsp </span>
     </div>
-    <b>Field</b>: <a v-for="f in field">{{f}}</a>
   </div>
 
   <div v-else style="padding: 10px">
@@ -29,6 +29,10 @@
     methods: {
       toDetail: function () { // this function is currently of no effect
         //this.$router.push('../detail/' + this.title);
+      },
+      click_author: function (aut) {
+        console.log("click author " + aut);
+        this.$emit('change_author', aut);
       }
     }
   }
