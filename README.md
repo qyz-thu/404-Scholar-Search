@@ -1,8 +1,9 @@
 # 404-Scholar-Search
 This is the front end of the team project in SOA
   
-We use Vue CLI to set up local host.  
-To start, use following instructions:  
+The web page is currently available on 123.57.231.102:8000.  
+
+If you want to set up local host on your own device, use following instructions:  
 
     cd search
     npm run dev
