@@ -15,12 +15,18 @@
 
         <td style="width: 30%; margin-left: 20px">
           <p style="font-size: 20px">Co-authors:</p>
-          <p v-for="ca in co_authors">
-            Name: <a><b>{{ca.name}}</b></a><br>
-            Similarity: {{ca.similarity}}<br>
-            Number: {{ca.num}}<br>
-            <br>
-          </p>
+          <div v-if="has_coauthor">
+            <p v-for="ca in co_authors">
+              Name: <a><b>{{ca.name}}</b></a><br>
+              Similarity: {{ca.similarity}}<br>
+              Number: {{ca.num}}<br>
+              <br>
+            </p>
+          </div>
+          <div v-else>
+            Sorry, we don't have co-authors of <b>{{current_author}}</b> in our database now.
+          </div>
+
         </td>
       </tr>
     </table>
@@ -44,9 +50,12 @@
       }
     },
     computed: {
-      // split_authors: function () {
-      //   return this.co_authors[0].split(',').map(s => s.trim());
-      // }
+      has_coauthor: function () {
+        return this.co_authors.length !== 0;
+      },
+      current_author: function () {
+        return this.$route.params.title;
+      }
     },
     beforeMount() {
       this.$axios
@@ -64,7 +73,7 @@
               this.research_fields = this.research_fields.slice(0, 3);
             this.papers = response.data.result.papers;
           }
-          //console.log(this.co_authors);
+          console.log(this.co_authors);
           //console.log(this.research_fields);
           //console.log(this.papers);
         })
@@ -94,7 +103,7 @@
             this.co_authors = [];
             this.research_fields = [];
             this.papers = [];
-            this.title = "Sorry, we can't find this author right now";
+            this.title = "Sorry, we don't have this author in our database now";
           }
 
           // this.$forceUpdate();
