@@ -30,12 +30,17 @@
         </td>
       </tr>
     </table>
+
+    <input class='search' v-model="new_query" placeholder="Who else do you want to know?">
+    <button class="buttons" type="button" v-on:click="newSearch">Search!</button>
   </div>
 </template>
 
 <script>
   import ResultEntry from "./ResultEntry";
   import PageSelector from "./PageSelector";
+  const max_query_length = 60;
+
   export default {
     name: 'Detail',
     components: {PageSelector, ResultEntry},
@@ -46,6 +51,7 @@
         co_authors: [","],
         research_fields: [],
         papers: [],
+        new_query: "",
         //http_data: [],
       }
     },
@@ -55,7 +61,7 @@
       },
       current_author: function () {
         return this.$route.params.title;
-      }
+      },
     },
     beforeMount() {
       this.$axios
@@ -108,8 +114,38 @@
 
           // this.$forceUpdate();
         })
+      },
+      newSearch: function () {
+        console.log("make new search");
+        if (this.new_query === "")
+        alert("you have entered nothing!");
+      else {
+          if (this.new_query.length >= max_query_length)
+            this.new_query = this.new_query.substr(0, max_query_length);   // truncate overly long queries
+          this.$router.push('/result/' + this.new_query + '/' + this.timespans);
+          this.$axios.get('http://123.57.231.102:8080/search?keyword=' + this.new_query + '&keytype=author')
+            .then(response => {
+              this.results = response.data.result;
+            })
+        }
       }
     }
 
   }
 </script>
+
+<style type="text/css">
+  .search {width: 40%; margin-top: 10px;  line-height: 30px; border-radius: 5px}
+  .buttons {
+    width: 100px;
+    height: 35px;
+    /*margin-bottom: 150px;*/
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    border-radius: 6px;
+    display: inline-block;
+    background-image: linear-gradient(#8ee4ff, #6bcaff);
+
+  }
+</style>

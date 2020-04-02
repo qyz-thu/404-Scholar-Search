@@ -11,7 +11,6 @@
     <p v-else>
                 <ResultEntry @change_author="change_author" v-for="people in entries" v-bind:key="people.name" v-bind:name="people.name"
                              v-bind:research_field="people.researchFields" >
-                  This is a person
                 </ResultEntry>
     </p>
     <br>
@@ -59,7 +58,7 @@
           return this.page_index + 1 < this.page_number;
         },
         has_previous: function () {
-          return this.page_index !== 0;
+          return this.page_index > 0;
         }
       },
     methods: {
