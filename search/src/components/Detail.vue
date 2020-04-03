@@ -30,7 +30,7 @@
         </td>
       </tr>
     </table>
-
+    <br><br>
     <input class='search' v-model="new_query" placeholder="Who else do you want to know?">
     <button class="buttons" type="button" v-on:click="newSearch">Search!</button>
   </div>

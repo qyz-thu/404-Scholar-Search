@@ -9,9 +9,10 @@
     </p>
 
     <p v-else>
-                <ResultEntry @change_author="change_author" v-for="people in entries" v-bind:key="people.name" v-bind:name="people.name"
-                             v-bind:research_field="people.researchFields" >
-                </ResultEntry>
+      <ResultEntry @change_author="change_author" v-for="people in current_page" v-bind:key="people.name"
+                   v-bind:name="people.name"
+                   v-bind:research_field="people.researchFields" >
+      </ResultEntry>
     </p>
     <br>
     <p style="text-align: center">

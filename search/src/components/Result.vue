@@ -20,16 +20,20 @@
         </td>
 
         <td v-if="isPaper" style="width: 60%; text-align: left; padding-top: 0">
+          <div>
             <ResultEntry v-for="paper in papers" v-bind:is-paper="isPaper" v-bind:key="paper.title" v-bind:title="paper.title"
                          time="xxxx-xx-xx" author="somebody et.al" v-bind:abstract="paper.abstract">
             </ResultEntry>
-
+          </div>
+          <div v-if="no_results" style="font-size: 25px">
+            <b >{{no_result_warning}}</b>
+          </div>
         </td>
         <td v-else style="width: 60%; text-align: left; padding-top: 0">
-<!--          <ResultEntry v-for="people in results" v-bind:key="people.name" v-bind:name="people.name"-->
-<!--                       v-bind:research_field="people.researchFields" >-->
-<!--            This is a person-->
-<!--          </ResultEntry>-->
+          <div v-if="no_results" style="font-size: 22px">
+            <br> <br>
+            <b>{{no_result_warning}}</b>
+          </div>
           <PageSelector v-bind:entries="results" v-bind:is-paper="false">
           </PageSelector>
         </td>
@@ -65,6 +69,15 @@
         papers: [],
         timespans: this.$route.params.timespan,
         isPaper: false,
+        no_result_warning: "Sorry, we found no result matching " +this.$route.params.query,
+      }
+    },
+    computed: {
+      no_results: function () {
+        return this.results.length === 0;
+      },
+      key_word: function () {
+        return this.$route.params.query;
       }
     },
     methods: {
@@ -75,9 +88,11 @@
           if (this.new_query.length >= max_query_length)
             this.new_query = this.new_query.substr(0, max_query_length);   // truncate overly long queries
           this.$router.push('/result/' + this.new_query + '/' + this.timespans);
+          this.no_result_warning = "Searching...";
           this.$axios.get('http://123.57.231.102:8080/search?keyword=' + this.new_query + '&keytype=author')
             .then(response => {
               this.results = response.data.result;
+              this.no_result_warning = "Sorry, we found no result matching " + this.key_word;
             })
         }
       },
