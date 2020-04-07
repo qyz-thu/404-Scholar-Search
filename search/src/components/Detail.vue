@@ -4,6 +4,7 @@
     <table style="width: 100%; text-align: left; ">
       <tr style="vertical-align: top">
         <td style="width: 20%; text-align: center; padding-right: 30px">
+          <p style="font-size: 20px">H-index: <b>{{h_index}}</b></p><br>
           <p style="font-size: 20px">Research Fields:</p>
           <p v-for="field in research_fields"><b>{{field}}</b></p>
         </td>
@@ -52,6 +53,7 @@
         research_fields: [],
         papers: [],
         new_query: "",
+        h_index: 0,
         //http_data: [],
       }
     },
@@ -78,8 +80,9 @@
             if (this.research_fields.length > 3)
               this.research_fields = this.research_fields.slice(0, 3);
             this.papers = response.data.result.papers;
+            this.h_index = response.data.result.H_index;
           }
-          console.log(this.co_authors);
+          //console.log(this.co_authors);
           //console.log(this.research_fields);
           //console.log(this.papers);
         })
