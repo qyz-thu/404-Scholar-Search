@@ -1,5 +1,5 @@
 <template>
-  <div class="main_body">
+  <div style="background: linear-gradient(antiquewhite, white); height: 200%;">
     <p style="font-size: 28px">{{title}}</p><br>
     <table style="width: 100%; text-align: left; ">
       <tr style="vertical-align: top">
