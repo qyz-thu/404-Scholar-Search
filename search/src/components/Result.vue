@@ -115,10 +115,15 @@
       }
     },
     mounted() {
+      this.no_result_warning = "Searching...";
       this.$axios
         .get('http://123.57.231.102:8080/search?keyword=' + this.query + '&keytype=author')
-        .then(response => (this.results = response.data.result))
+        .then(response => {
+          this.results = response.data.result;
+          this.no_result_warning = "Sorry, we found no result matching " + this.key_word;
+        })
         .catch(error => (console.log(error)));
+
     }
   }
 </script>

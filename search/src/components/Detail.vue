@@ -112,6 +112,7 @@
             this.research_fields = [];
             this.papers = [];
             this.title = "Sorry, we don't have this author in our database now";
+            this.h_index = 0;
           }
         })
       },
