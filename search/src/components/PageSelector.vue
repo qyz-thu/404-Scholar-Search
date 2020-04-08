@@ -83,6 +83,7 @@
         },
       change_author: function (aut) {
         console.log("change author to " + aut);
+        this.page_index = 0;
         this.$emit('update', aut);
       },
       highlight: function (paper) {

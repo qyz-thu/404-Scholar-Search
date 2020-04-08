@@ -114,7 +114,7 @@
             this.title = "Sorry, we don't have this author in our database now";
             this.h_index = 0;
           }
-        })
+        });
       },
       newSearch: function () {
         console.log("make new search");
@@ -145,6 +145,7 @@
       de_highlight: function() {
         for (var i = 0; i < this.co_authors.length; i++)
           this.co_authors[i].highlight = false;
+        this.$forceUpdate();
       },
       text_color: function (h) {
         if (h === true)
