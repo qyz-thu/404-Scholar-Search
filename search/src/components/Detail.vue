@@ -18,7 +18,7 @@
           <p style="font-size: 20px">Co-authors:</p>
           <div v-if="has_coauthor">
             <p v-for="ca in co_authors">
-              Name: <a><b>{{ca.name}}</b></a><br>
+              Name: <a v-on:click="update(ca.name)" :href="'#/detail/' + ca.name"><b>{{ca.name}}</b></a><br>
               Similarity: {{ca.similarity}}<br>
               Number of Collaboration: {{ca.num}}<br>
               <br>
