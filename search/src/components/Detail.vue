@@ -20,7 +20,7 @@
             <p v-for="ca in co_authors">
               Name: <a><b>{{ca.name}}</b></a><br>
               Similarity: {{ca.similarity}}<br>
-              Number: {{ca.num}}<br>
+              Number of Collaboration: {{ca.num}}<br>
               <br>
             </p>
           </div>
@@ -74,11 +74,7 @@
           if (response.data.status === "success")
           {
             this.co_authors = response.data.result.co_authors;
-            if (this.co_authors.length > 3)
-              this.co_authors = this.co_authors.slice(0, 3);
             this.research_fields = response.data.result.researchFields;
-            if (this.research_fields.length > 3)
-              this.research_fields = this.research_fields.slice(0, 3);
             this.papers = response.data.result.papers;
             this.h_index = response.data.result.H_index;
           }
