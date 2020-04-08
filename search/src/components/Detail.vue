@@ -10,14 +10,16 @@
         </td>
 
         <td style="width: 50%; text-align: left; padding-top: 0">
-          <PageSelector @update='update' v-bind:entries="papers" v-bind:is-paper="true">
+          <PageSelector @update='update' @highlight="highlight" @dlight="de_highlight"
+                        v-bind:entries="papers" v-bind:is-paper="true">
           </PageSelector>
         </td>
 
         <td style="width: 30%; margin-left: 20px">
           <p style="font-size: 20px">Co-authors:</p>
           <div v-if="has_coauthor">
-            <p v-for="ca in co_authors">
+
+            <p v-for="ca in co_authors" v-bind:style="{color: text_color(ca.highlight)} ">
               Name: <a v-on:click="update(ca.name)" :href="'#/detail/' + ca.name"><b>{{ca.name}}</b></a><br>
               Similarity: {{ca.similarity}}<br>
               Number of Collaboration: {{ca.num}}<br>
@@ -64,6 +66,7 @@
       current_author: function () {
         return this.$route.params.title;
       },
+
     },
     beforeMount() {
       this.$axios
@@ -74,6 +77,8 @@
           if (response.data.status === "success")
           {
             this.co_authors = response.data.result.co_authors;
+            for (var i = 0;i < this.co_authors.length; i++)
+              this.co_authors[i]['highlight'] = false;
             this.research_fields = response.data.result.researchFields;
             this.papers = response.data.result.papers;
             this.h_index = response.data.result.H_index;
@@ -96,11 +101,9 @@
           if (response.data.status === "success")
           {
             this.co_authors = response.data.result.co_authors;
-            if (this.co_authors.length > 3)
-              this.co_authors = this.co_authors.slice(0, 3);
+            for (var i = 0;i < this.co_authors.length; i++)
+              this.co_authors[i]['highlight'] = false;
             this.research_fields = response.data.result.researchFields;
-            if (this.research_fields.length > 3)
-              this.research_fields = this.research_fields.slice(0, 3);
             this.papers = response.data.result.papers;
             this.title = aut;
           }
@@ -110,8 +113,6 @@
             this.papers = [];
             this.title = "Sorry, we don't have this author in our database now";
           }
-
-          // this.$forceUpdate();
         })
       },
       newSearch: function () {
@@ -127,9 +128,30 @@
               this.results = response.data.result;
             })
         }
+      },
+      highlight: function (authors) {
+        // console.log("highlight now");
+        // console.log(authors);
+        // console.log(this.co_authors);
+        for (var i = 0; i < authors.length; i++)
+        {
+          for (var j = 0; j < this.co_authors.length; j++)
+            if (authors[i] === this.co_authors[j].name)
+              this.co_authors[j]['highlight'] = true;
+        }
+        this.$forceUpdate();
+      },
+      de_highlight: function() {
+        for (var i = 0; i < this.co_authors.length; i++)
+          this.co_authors[i].highlight = false;
+      },
+      text_color: function (h) {
+        if (h === true)
+          return 'cyan';
+        return 'black';
       }
-    }
 
+    }
   }
 </script>
 

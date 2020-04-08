@@ -3,7 +3,8 @@
     <p v-if="isPaper">
       <ResultEntry @change_author="change_author" v-for="paper in current_page" v-bind:key="paper.title"
                    :is-paper="true" v-bind:title="paper.title" v-bind:field="paper.fields"
-                   v-bind:time="paper.time" v-bind:author="paper.authors">
+                   v-bind:time="paper.time" v-bind:author="paper.authors"
+                   @mouseover.native="highlight(paper)" @mouseleave.native="de_highlight">
         {{paper}}
       </ResultEntry>
     </p>
@@ -11,10 +12,9 @@
     <p v-else>
       <ResultEntry @change_author="change_author" v-for="people in current_page" v-bind:key="people.name"
                    v-bind:name="people.name"
-                   v-bind:research_field="people.researchFields" >
-      </ResultEntry>
-    </p>
-    <br>
+                   v-bind:research_field="people.researchFields" ></ResultEntry>
+    </p><br>
+
     <p style="text-align: center">
       <a v-on:click="toNext" v-if='has_next' class="click_text">Next</a>&nbsp &nbsp
       <a v-on:click="toPrevious" v-if='has_previous' class="click_text">Previous</a>
@@ -63,13 +63,13 @@
         }
       },
     methods: {
-        toNext: function () {
+      toNext: function () {
           this.page_index += 1;
         },
-        toPrevious: function () {
+      toPrevious: function () {
           this.page_index -= 1;
         },
-        goTo: function () {
+      goTo: function () {
           console.log(this.page_input);
           if (this.page_input > this.page_number) {
             this.page_index = this.page_number - 1;
@@ -84,6 +84,16 @@
       change_author: function (aut) {
         console.log("change author to " + aut);
         this.$emit('update', aut);
+      },
+      highlight: function (paper) {
+        // console.log("enter paper");
+        // console.log(paper.title);
+        this.$emit("highlight", paper.authors);
+      },
+      de_highlight: function () {
+        // console.log("leave paper");
+        // console.log(paper.title);
+        this.$emit('dlight');
       }
     },
     }

@@ -3,8 +3,7 @@
     <b style="font-size: 18px"><a :href="'#/detail/' + title" v-on:click="toDetail">{{title}}</a></b><br>
     <div style="color: grey">
       <b>Time</b>: {{time}} &nbsp
-      <b>Field</b>: <a v-for="f in field">{{f}}; &nbsp</a>
-      <br>
+      <b>Field</b>: <a v-for="f in field">{{f}}; &nbsp</a><br>
       <b>Author</b>: <span v-for="aut in author"><a v-on:click="click_author(aut)" :href="'#/detail/' + aut">{{aut}}</a>&nbsp &nbsp </span>
     </div>
   </div>
