@@ -90,8 +90,42 @@
         .catch(error =>(console.log(error)));
     },
     mounted() {
+      if (window.history && window.history.pushState)
+      {
+        history.pushState(null, null, document.URL);
+        window.addEventListener('popstate', this.back,false);
+      }
+    },
+    destroyed() {
+      window.removeEventListener('popstate', this.back, false);
     },
     methods: {
+      back: function() {
+        console.log("you've clicked back.");
+        console.log(this.$route.params.title);
+        this.$axios
+          .get("http://123.57.231.102:8080/query?name=" + this.$route.params.title)
+          .then(response => {
+            console.log(response.data);
+            if (response.data.status === "success")
+            {
+              this.co_authors = response.data.result.co_authors;
+              for (var i = 0;i < this.co_authors.length; i++)
+                this.co_authors[i]['highlight'] = false;
+              this.research_fields = response.data.result.researchFields;
+              this.papers = response.data.result.papers;
+              this.title = this.$route.params.title;
+            }
+            else {
+              this.co_authors = [];
+              this.research_fields = [];
+              this.papers = [];
+              this.title = "Sorry, we don't have this author in our database now";
+              this.h_index = 0;
+            }
+          });
+
+      },
       update: function (aut) {
         console.log("update author to " + aut);
         this.$axios

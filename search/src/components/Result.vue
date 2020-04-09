@@ -29,6 +29,7 @@
             <b >{{no_result_warning}}</b>
           </div>
         </td>
+
         <td v-else style="width: 60%; text-align: left; padding-top: 0">
           <div v-if="no_results" style="font-size: 22px">
             <br> <br>
@@ -115,6 +116,7 @@
       }
     },
     mounted() {
+      console.log("enter result page");
       this.no_result_warning = "Searching...";
       this.$axios
         .get('http://123.57.231.102:8080/search?keyword=' + this.query + '&keytype=author')
