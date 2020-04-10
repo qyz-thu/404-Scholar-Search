@@ -95,6 +95,9 @@
         // console.log("leave paper");
         // console.log(paper.title);
         this.$emit('dlight');
+      },
+      reset: function () {
+        this.page_index = 0;
       }
     },
     }

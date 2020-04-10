@@ -10,7 +10,7 @@
         </td>
 
         <td style="width: 50%; text-align: left; padding-top: 0">
-          <PageSelector @update='update' @highlight="highlight" @dlight="de_highlight"
+          <PageSelector @update='update' @highlight="highlight" @dlight="de_highlight" ref="page_selector"
                         v-bind:entries="papers" v-bind:is-paper="true">
           </PageSelector>
         </td>
@@ -18,7 +18,6 @@
         <td style="width: 30%; margin-left: 20px">
           <p style="font-size: 20px">Co-authors:</p>
           <div v-if="has_coauthor">
-
             <p v-for="ca in co_authors" v-bind:style="{color: text_color(ca.highlight)} ">
               Name: <a v-on:click="update(ca.name)" :href="'#/detail/' + ca.name"><b>{{ca.name}}</b></a><br>
               Similarity: {{ca.similarity}}<br>
@@ -46,7 +45,7 @@
 
   export default {
     name: 'Detail',
-    components: {PageSelector, ResultEntry},
+    components: {PageSelector, result_entry: ResultEntry},
     data: function () {
       return {
         isPaper: false,
@@ -148,6 +147,7 @@
             this.title = "Sorry, we don't have this author in our database now";
             this.h_index = 0;
           }
+          this.$refs.page_selector.reset();
         });
       },
       newSearch: function () {
