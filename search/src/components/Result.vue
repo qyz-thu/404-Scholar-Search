@@ -2,7 +2,14 @@
   <div class="main_body" style=" height: 150%">
     <input class='search' v-model="new_query" placeholder="What do you want to know?">
     <button class="buttons" type="button" v-on:click="newSearch">Search!</button>
-    <br><br>
+    <p>
+      <input type="radio" id="scholar_box" value="scholar" name="select" v-model="search_type" checked="true">
+      <label for="scholar_box">Search for scholars</label>
+      &nbsp &nbsp &nbsp &nbsp &nbsp
+      <input type="radio" id="paper_box" value="paper" name="select" v-model="search_type">
+      <label for="paper_box">Search for papers</label>
+    </p>
+    <br>
     <table style="width: 100%; text-align: left;">
       <tr style="vertical-align: top">
         <td style="width: 20%; text-align: center; padding-right: 30px">
@@ -71,6 +78,7 @@
         timespans: this.$route.params.timespan,
         isPaper: false,
         no_result_warning: "Sorry, we found no result matching " +this.$route.params.query,
+        search_type: this.$route.params.type,
       }
     },
     computed: {
@@ -83,12 +91,13 @@
     },
     methods: {
       newSearch: function () {
+        console.log("search for " + this.search_type);
         if (this.new_query === "")
           alert("you have entered nothing!");
         else {
           if (this.new_query.length >= max_query_length)
             this.new_query = this.new_query.substr(0, max_query_length);   // truncate overly long queries
-          this.$router.push('/result/' + this.new_query + '/' + this.timespans);
+          this.$router.push('/result/' + this.new_query + '/' + this.search_type  + '/' + this.timespans);
           this.no_result_warning = "Searching...";
           this.$axios.get('http://123.57.231.102:8080/search?keyword=' + this.new_query + '&keytype=author')
             .then(response => {
@@ -116,7 +125,7 @@
       }
     },
     mounted() {
-      console.log("enter result page");
+      console.log(this.search_type);
       this.no_result_warning = "Searching...";
       this.$axios
         .get('http://123.57.231.102:8080/search?keyword=' + this.query + '&keytype=author')

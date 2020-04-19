@@ -35,6 +35,13 @@
     <br><br>
     <input class='search' v-model="new_query" placeholder="Who else do you want to know?">
     <button class="buttons" type="button" v-on:click="newSearch">Search!</button>
+    <p>
+      <input type="radio" id="scholar_box" value="scholar" name="select" v-model="search_type" checked="true">
+      <label for="scholar_box">Search for scholars</label>
+      &nbsp &nbsp &nbsp &nbsp &nbsp
+      <input type="radio" id="paper_box" value="paper" name="select" v-model="search_type">
+      <label for="paper_box">Search for papers</label>
+    </p>
   </div>
 </template>
 
@@ -55,6 +62,7 @@
         papers: [],
         new_query: "",
         h_index: 0,
+        search_type: 'scholar',
         //http_data: [],
       }
     },
@@ -157,7 +165,7 @@
       else {
           if (this.new_query.length >= max_query_length)
             this.new_query = this.new_query.substr(0, max_query_length);   // truncate overly long queries
-          this.$router.push('/result/' + this.new_query + '/' + this.timespans);
+          this.$router.push('/result/' + this.new_query + '/' + this.search_type + '/' + this.timespans);
           this.$axios.get('http://123.57.231.102:8080/search?keyword=' + this.new_query + '&keytype=author')
             .then(response => {
               this.results = response.data.result;

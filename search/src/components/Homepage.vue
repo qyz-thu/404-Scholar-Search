@@ -1,11 +1,16 @@
 <template>
     <div class="main_body">
-<!--        <br><br>-->
-<!--        <h1>404 Scholar Search</h1>-->
+
         <p>{{welcome}}</p>
         <br><br>
         <input class='search' v-model="query" placeholder="What do you want to know?"> <br>
-        <br><br>
+        <p>
+          <input type="radio" id="scholar_box" value="scholar" name="select" v-model="search_type" checked="true">
+          <label for="scholar_box">Search for scholars</label>
+          &nbsp &nbsp &nbsp &nbsp &nbsp
+          <input type="radio" id="paper_box" value="paper" name="select" v-model="search_type">
+          <label for="paper_box">Search for papers</label>
+        </p>
         <button class="buttons" type="button" v-on:click="toSearch">Search!</button>
     </div>
 
@@ -16,12 +21,13 @@
   export default {
       name: 'Homepage',
       props: {
-          welcome: String
+          welcome: String,
       },
       data: function () {
           return {
               query: "",
               results: {},
+              search_type: 'scholar',
           }
       },
       methods: {
@@ -31,7 +37,8 @@
               else {
                 if (this.query.length >= max_query_len)
                   this.query = this.query.substr(0, max_query_len);   // truncate overly long queries
-                this.$router.push('/result/' + this.query + '/all-time');
+                var stype = '/' + this.search_type;
+                this.$router.push('/result/' + this.query + stype + '/all-time');
 
               }
           }
