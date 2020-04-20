@@ -1,17 +1,17 @@
 <template>
     <div class="main_body">
-
-        <p>{{welcome}}</p>
-        <br><br>
-        <input class='search' v-model="query" placeholder="What do you want to know?"> <br>
-        <p>
-          <input type="radio" id="scholar_box" value="scholar" name="select" v-model="search_type" checked="true">
-          <label for="scholar_box">Search for scholars</label>
-          &nbsp &nbsp &nbsp &nbsp &nbsp
-          <input type="radio" id="paper_box" value="paper" name="select" v-model="search_type">
-          <label for="paper_box">Search for papers</label>
-        </p>
-        <button class="buttons" type="button" v-on:click="toSearch">Search!</button>
+      <p>{{welcome}}</p>
+      <br><br>
+      <input class='search' v-model="query" placeholder="What do you want to know?"> <br>
+      <p>
+        <input style="zoom: 120%" type="radio" id="scholar_box" value="scholar" name="select" v-model="search_type" checked="true">
+        <label for="scholar_box" style="font-size: 20px">Search for scholars</label>
+        &nbsp &nbsp &nbsp &nbsp &nbsp
+        <input style="zoom: 120%" type="radio" id="paper_box" value="paper" name="select" v-model="search_type">
+        <label for="paper_box" style="font-size: 20px">Search for papers</label>
+      </p>
+      <button class="buttons" type="button" v-on:click="toSearch">Search!</button>
+      <p style="padding-top: 200px">Contact: <u>qyz17@mails.tsinghua.edu.cn</u></p>
     </div>
 
 </template>

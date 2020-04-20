@@ -1,5 +1,5 @@
 <template>
-  <div v-if='isPaper' style="padding: 10px">
+  <div v-if='isPaper' style="padding: 10px;">
     <b style="font-size: 18px"><a :href="'#/detail/' + title" >{{title}}</a></b><br>
     <div style="color: grey">
       <b>Time</b>: {{time}} &nbsp

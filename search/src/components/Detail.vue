@@ -1,6 +1,6 @@
 <template>
   <div style="background: linear-gradient(antiquewhite, white); height: 200%;">
-    <p style="font-size: 28px">{{title}}</p><br>
+    <p style="font-size: 32px">{{title}}</p><br>
     <table style="width: 100%; text-align: left; ">
       <tr style="vertical-align: top">
         <td style="width: 20%; text-align: center; padding-right: 30px">
@@ -16,7 +16,7 @@
         </td>
 
         <td style="width: 30%; margin-left: 20px">
-          <p style="font-size: 20px">Co-authors:</p>
+          <p style="font-size: 20px">Scholars similar to <b>{{title}}</b>:</p>
           <div v-if="has_coauthor">
             <p v-for="ca in co_authors" v-bind:style="{color: text_color(ca.highlight)} ">
               Name: <a v-on:click="update(ca.name)" :href="'#/detail/' + ca.name"><b>{{ca.name}}</b></a><br>
@@ -36,11 +36,11 @@
     <input class='search' v-model="new_query" placeholder="Who else do you want to know?">
     <button class="buttons" type="button" v-on:click="newSearch">Search!</button>
     <p>
-      <input type="radio" id="scholar_box" value="scholar" name="select" v-model="search_type" checked="true">
-      <label for="scholar_box">Search for scholars</label>
+      <input style="zoom: 120%" type="radio" id="scholar_box" value="scholar" name="select" v-model="search_type" checked="true">
+      <label for="scholar_box" style="font-size: 20px">Search for scholars</label>
       &nbsp &nbsp &nbsp &nbsp &nbsp
-      <input type="radio" id="paper_box" value="paper" name="select" v-model="search_type">
-      <label for="paper_box">Search for papers</label>
+      <input style="zoom: 120%" type="radio" id="paper_box" value="paper" name="select" v-model="search_type">
+      <label for="paper_box" style="font-size: 20px">Search for papers</label>
     </p>
   </div>
 </template>

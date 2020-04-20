@@ -3,11 +3,11 @@
     <input class='search' v-model="new_query" placeholder="What do you want to know?">
     <button class="buttons" type="button" v-on:click="newSearch">Search!</button>
     <p>
-      <input type="radio" id="scholar_box" value="scholar" name="select" v-model="search_type" checked="true">
-      <label for="scholar_box">Search for scholars</label>
+      <input style="zoom: 120%" type="radio" id="scholar_box" value="scholar" name="select" v-model="search_type" checked="true">
+      <label for="scholar_box" style="font-size: 20px">Search for scholars</label>
       &nbsp &nbsp &nbsp &nbsp &nbsp
-      <input type="radio" id="paper_box" value="paper" name="select" v-model="search_type">
-      <label for="paper_box">Search for papers</label>
+      <input style="zoom: 120%" type="radio" id="paper_box" value="paper" name="select" v-model="search_type">
+      <label for="paper_box" style="font-size: 20px">Search for papers</label>
     </p>
     <br>
     <table style="width: 100%; text-align: left;">
@@ -55,6 +55,7 @@
     </table>
   </div>
 </template>
+
 
 <script>
   import ResultEntry from "./ResultEntry";
