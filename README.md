@@ -12,14 +12,16 @@ If you haven't installed Vue CLI, first install node.js, then use following inst
 
     npm install -g @vue/cli  
 
+We use *element-ui* as our UI framework. Please refer to **https://element.eleme.cn** for further information.
+
 Our current frontpage should look like this:  
-<img alt="snapshot of home page" src="./Homepage.png">  
+<img alt="snapshot of home page" src="./Homepage.jpg">  
 
 Our result page should look like this:
-<img alt="snapshot of result page" src="./result_page.png">
+<img alt="snapshot of result page" src="./result_page.jpg">
 
 Our detail page should look like this:  
-<img alt="snapshot of result page" src="./detail_page.png">
+<img alt="snapshot of result page" src="./detail_page.jpg">
 
   
 **Note**: Current version uses http api provided by backend on 123.57.231.102. Please refer to https://github.com/SigmaTsing/404-backend/tree/develop for details. 
