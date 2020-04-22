@@ -15,13 +15,14 @@
                    v-bind:research_field="people.researchFields" ></ResultEntry>
     </p><br>
 
-    <p style="text-align: center">
-      <a v-on:click="toNext" v-if='has_next' class="click_text">Next</a>&nbsp &nbsp
-      <a v-on:click="toPrevious" v-if='has_previous' class="click_text">Previous</a>
-      &nbsp &nbsp 第{{page_index + 1}}页，共{{page_number}}页 &nbsp 跳至第<label>
-      <input style="width: 20pt" v-model="page_input" oninput = "value=value.replace(/[^\d]/g,'')">
-    </label>页
-      <a v-on:click="goTo" class="click_text">Go</a>
+    <p style="text-align: center; font-family: Arial,serif; color: #909399">
+      <el-button v-on:click="toNext" v-if='has_next' type="info" size="small">Next</el-button>&nbsp &nbsp
+      <el-button v-on:click="toPrevious" v-if='has_previous' type="info" size="small">Prev</el-button>
+      &nbsp &nbsp 第{{page_index + 1}}页，共{{page_number}}页 &nbsp 跳至第
+      <label>
+      <input style="width: 15pt; text-align: center" v-model="page_input" oninput="value=value.replace(/[^\d]/g,'')">
+      </label>页
+      <el-button size="small" @click="goTo" type="info" circle>Go</el-button>
     </p>
 
   </div>
