@@ -1,12 +1,14 @@
 <template>
   <div style="background: linear-gradient(antiquewhite, white); height: 200%;">
-    <p style="font-size: 32px">{{title}}</p><br>
+    <p style="font-size: 32px">{{title}}</p>
+    <el-divider></el-divider>
     <table style="width: 100%; text-align: left; ">
       <tr style="vertical-align: top">
         <td style="width: 20%; text-align: center; padding-right: 30px">
-          <p style="font-size: 20px">H-index: <b>{{h_index}}</b></p><br>
+          <p style="font-size: 20px">H-index: <b>{{h_index}}</b></p>
           <p style="font-size: 20px">Research Fields:</p>
-          <p v-for="field in research_fields"><b>{{field}}</b></p>
+
+          <p v-for="field in research_fields"><el-tag>{{field}}</el-tag></p>
         </td>
 
         <td style="width: 50%; text-align: left; padding-top: 0">
@@ -16,7 +18,7 @@
         </td>
 
         <td style="width: 30%; margin-left: 20px">
-          <p style="font-size: 20px">Scholars similar to <b>{{title}}</b>:</p>
+          <p style="font-size: 20px">Scholars similar to <b>{{current_author}}</b>:</p>
           <div v-if="has_coauthor">
             <p v-for="ca in co_authors" v-bind:style="{color: text_color(ca.highlight)} ">
               Name: <a v-on:click="update(ca.name)" :href="'#/detail/' + ca.name"><b>{{ca.name}}</b></a><br>
@@ -33,14 +35,11 @@
       </tr>
     </table>
     <br><br>
-    <input class='search' v-model="new_query" placeholder="Who else do you want to know?">
-    <button class="buttons" type="button" v-on:click="newSearch">Search!</button>
+    <el-input class='search' v-model="new_query" placeholder="Who else do you want to know?"></el-input>
+    <el-button type="primary" style="font-size: 15px" icon="el-icon-search" v-on:click="newSearch">Search!</el-button>
     <p>
-      <input style="zoom: 120%" type="radio" id="scholar_box" value="scholar" name="select" v-model="search_type" checked="true">
-      <label for="scholar_box" style="font-size: 20px">Search for scholars</label>
-      &nbsp &nbsp &nbsp &nbsp &nbsp
-      <input style="zoom: 120%" type="radio" id="paper_box" value="paper" name="select" v-model="search_type">
-      <label for="paper_box" style="font-size: 20px">Search for papers</label>
+      <el-radio style="zoom: 120%" v-model="search_type" label="scholar">Search for scholars</el-radio>
+      <el-radio style="zoom: 120%" v-model="search_type" label="paper">Search for papers</el-radio>
     </p>
   </div>
 </template>
@@ -201,16 +200,16 @@
 
 <style type="text/css">
   .search {width: 40%; margin-top: 10px;  line-height: 30px; border-radius: 5px}
-  .buttons {
-    width: 100px;
-    height: 35px;
-    /*margin-bottom: 150px;*/
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    border-radius: 6px;
-    display: inline-block;
-    background-image: linear-gradient(#8ee4ff, #6bcaff);
+  /*.buttons {*/
+  /*  width: 100px;*/
+  /*  height: 35px;*/
+  /*  !*margin-bottom: 150px;*!*/
+  /*  font-size: 16px;*/
+  /*  font-weight: bold;*/
+  /*  color: white;*/
+  /*  border-radius: 6px;*/
+  /*  display: inline-block;*/
+  /*  background-image: linear-gradient(#8ee4ff, #6bcaff);*/
 
-  }
+  /*}*/
 </style>

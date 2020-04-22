@@ -1,15 +1,12 @@
 <template>
   <div class="main_body" style=" height: 150%">
-    <input class='search' v-model="new_query" placeholder="What do you want to know?">
-    <button class="buttons" type="button" v-on:click="newSearch">Search!</button>
+    <el-input class='search' v-model="new_query" placeholder="What do you want to know?"></el-input>
+    <el-button type="primary" style="font-size: 15px" icon="el-icon-search" v-on:click="newSearch">Search!</el-button>
     <p>
-      <input style="zoom: 120%" type="radio" id="scholar_box" value="scholar" name="select" v-model="search_type" checked="true">
-      <label for="scholar_box" style="font-size: 20px">Search for scholars</label>
-      &nbsp &nbsp &nbsp &nbsp &nbsp
-      <input style="zoom: 120%" type="radio" id="paper_box" value="paper" name="select" v-model="search_type">
-      <label for="paper_box" style="font-size: 20px">Search for papers</label>
+      <el-radio style="zoom: 120%" v-model="search_type" label="scholar">Search for scholars</el-radio>
+      <el-radio style="zoom: 120%" v-model="search_type" label="paper">Search for papers</el-radio>
     </p>
-    <br>
+    <el-divider></el-divider>
     <table style="width: 100%; text-align: left;">
       <tr style="vertical-align: top">
         <td style="width: 20%; text-align: center; padding-right: 30px">

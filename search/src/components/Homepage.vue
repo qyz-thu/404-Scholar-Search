@@ -62,18 +62,18 @@
 
 <style type="text/css">
     .search {width: 50%; margin-top: 10px;  line-height: 30px; border-radius: 5px}
-    .buttons {
-      width: 100px;
-      height: 35px;
-      /*margin-bottom: 150px;*/
-      font-size: 16px;
-      font-weight: bold;
-      color: white;
-      border-radius: 6px;
-      display: inline-block;
-      background-image: linear-gradient(#8ee4ff, #6bcaff);
+    /*.buttons {*/
+    /*  width: 100px;*/
+    /*  height: 35px;*/
+    /*  !*margin-bottom: 150px;*!*/
+    /*  font-size: 16px;*/
+    /*  font-weight: bold;*/
+    /*  color: white;*/
+    /*  border-radius: 6px;*/
+    /*  display: inline-block;*/
+    /*  background-image: linear-gradient(#8ee4ff, #6bcaff);*/
 
-    }
+    /*}*/
     table {
     width: 100%; text-align: left
     }

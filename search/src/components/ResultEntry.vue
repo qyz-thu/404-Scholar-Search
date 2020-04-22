@@ -1,7 +1,7 @@
 <template>
   <div v-if='isPaper' style="padding: 10px;">
     <b style="font-size: 18px"><a :href="'#/detail/' + title" >{{title}}</a></b><br>
-    <div style="color: grey">
+    <div>
       <b>Time</b>: {{time}} &nbsp
       <b>Field</b>: <a v-for="f in field">{{f}}; &nbsp</a><br>
       <b>Author</b>:
@@ -13,7 +13,7 @@
 
   <div v-else style="padding: 10px">
     <b style="font-size: 18px"><a :href="'#/detail/' + name" >{{name}}</a></b><br>
-    <div style="color: grey">Research fields: <b v-for="f in research_field" v-bind:key="f">{{f}}; &nbsp</b></div>
+    <div><b>Research fields</b>: <el-tag style="padding-left: 5px" v-for="f in research_field" :key="f">{{f}} </el-tag></div>
   </div>
 </template>
 
