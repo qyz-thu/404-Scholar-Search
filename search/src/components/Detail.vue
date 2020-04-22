@@ -11,19 +11,22 @@
           <p v-for="field in research_fields"><el-tag>{{field}}</el-tag></p>
         </td>
 
-        <td style="width: 50%; text-align: left; padding-top: 0">
+        <td style="width: 60%; text-align: left; padding-top: 0">
           <PageSelector @update='update' @highlight="highlight" @dlight="de_highlight" ref="page_selector"
                         v-bind:entries="papers" v-bind:is-paper="true">
           </PageSelector>
         </td>
 
-        <td style="width: 30%; margin-left: 20px">
-          <p style="font-size: 20px">Scholars similar to <b>{{current_author}}</b>:</p>
+        <td style="width: 20%; margin-left: 20px">
+          <p style="font-size: 20px">Scholars similar to <br><b>{{current_author}}</b>:</p>
           <div v-if="has_coauthor">
             <p v-for="ca in co_authors" v-bind:style="{color: text_color(ca.highlight)} ">
-              Name: <a v-on:click="update(ca.name)" :href="'#/detail/' + ca.name"><b>{{ca.name}}</b></a><br>
-              Similarity: {{ca.similarity}}<br>
-              Number of Collaboration: {{ca.num}}<br>
+              <el-tooltip placement="top">
+                <div slot="content">Similarity: {{ca.similarity}}<br>
+                  Number of Collaboration: {{ca.num}}<br><br>
+                  CLICK TO SEE DETAIL</div>
+                <el-tag v-bind:color="text_color(ca.highlight)" @click="update(ca.name)"> {{ca.name}}</el-tag>
+              </el-tooltip>
               <br>
             </p>
           </div>
@@ -134,6 +137,7 @@
       },
       update: function (aut) {
         console.log("update author to " + aut);
+        this.$router.push('/detail/' + aut);
         this.$axios
         .get("http://123.57.231.102:8080/query?name=" + aut)
         .then(response => {
@@ -190,8 +194,8 @@
       },
       text_color: function (h) {
         if (h === true)
-          return 'cyan';
-        return 'black';
+          return 'yellow';
+        return 'azure';
       }
 
     }
@@ -200,16 +204,6 @@
 
 <style type="text/css">
   .search {width: 40%; margin-top: 10px;  line-height: 30px; border-radius: 5px}
-  /*.buttons {*/
-  /*  width: 100px;*/
-  /*  height: 35px;*/
-  /*  !*margin-bottom: 150px;*!*/
-  /*  font-size: 16px;*/
-  /*  font-weight: bold;*/
-  /*  color: white;*/
-  /*  border-radius: 6px;*/
-  /*  display: inline-block;*/
-  /*  background-image: linear-gradient(#8ee4ff, #6bcaff);*/
 
-  /*}*/
+
 </style>
