@@ -7,20 +7,22 @@
       <el-radio style="zoom: 120%" v-model="search_type" label="paper">Search for papers</el-radio>
     </p>
     <el-divider></el-divider>
-    <table style="width: 100%; text-align: left;">
+    <table style="width: 100%;text-align: left;color: #606266">
       <tr style="vertical-align: top">
         <td style="width: 20%; text-align: center; padding-right: 30px">
-          <p>当前时间范围：{{timespans}}</p>
+          <p>当前时间范围：<span style="color: deepskyblue">{{timespans}}</span></p>
+          <span style="font-size: 17px; line-height: 25px">选择时间范围：</span><br>
+          <p><el-date-picker type="year" v-model="start_year" style="width: 80%" value-format="yyyy" placeholder="start-year">
+          </el-date-picker><br></p>
+          <p><el-date-picker type="year" v-model="end_year" style="width: 80%" value-format="yyyy" placeholder="end-year">
+          </el-date-picker></p>
+          <el-button type="primary" v-on:click="selectTime" size="small">选择</el-button>
 
-          <input type="date" id="date1" /><br>
-          <input type="date" id="date2"/><br>
-          <button type="button" v-on:click="selectTime">选择</button><br><br>
 
-          <b style="font-size: 17px; line-height: 25px">选择时间范围：</b><br>
-          <a :href="'#/result/' + query + '/' + t.en" style="font-size: 15px; line-height: 25px" v-for="t in times"
-          v-on:click="updateTime(t.en)">
-            {{t.ch}}<br>
-          </a>
+<!--          <a :href="'#/result/' + query + '/' + t.en" style="font-size: 15px; line-height: 25px" v-for="t in times"-->
+<!--          v-on:click="updateTime(t.en)">-->
+<!--            {{t.ch}}<br>-->
+<!--          </a>-->
         </td>
 
         <td v-if="isPaper" style="width: 60%; text-align: left; padding-top: 0">
@@ -77,6 +79,8 @@
         isPaper: false,
         no_result_warning: "Sorry, we found no result matching " +this.$route.params.query,
         search_type: this.$route.params.type,
+        start_year: '',
+        end_year: '',
       }
     },
     computed: {
@@ -108,10 +112,10 @@
         this.timespans = en_time;
       },
       selectTime: function () {
-        let date1 = document.getElementById("date1").value;
-        let date2 = document.getElementById("date2").value;
-        date1 = date1.slice(0, 4) + date1.slice(5, 7) + date1.slice(8, 10);
-        date2 = date2.slice(0, 4) + date2.slice(5, 7) + date2.slice(8, 10);
+        console.log(this.start_year);
+        console.log(this.end_year);
+        let date1 = this.start_year;
+        let date2 = this.end_year;
         if (date1 !== "" && date2 !== "" && date1 < date2)
         {
           this.timespans = date1 + '-' + date2;
