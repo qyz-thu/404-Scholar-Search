@@ -1,6 +1,6 @@
 <template>
   <div id="app" >
-    <img src="./assets/new_logo.png" width="30%" style="margin-top: 20px">
+    <img src="./assets/new_logo.png" width="25%" style="margin-top: 20px">
     <router-view/>
   </div>
 </template>
@@ -21,14 +21,14 @@ export default {
   /*margin-top: 60px;*/
   bottom: 0;
   top: 0;
-  background-color: antiquewhite;
+  background-color: #fff0e6;
   height: 100%;
 }
 .head {
-  background-color: antiquewhite;
+  background-color: #fff0e6;
 }
 .main_body {
-  background: linear-gradient(antiquewhite, white);
+  background: linear-gradient(#fff0e6, white);
   height: 140%;
 }
 </style>

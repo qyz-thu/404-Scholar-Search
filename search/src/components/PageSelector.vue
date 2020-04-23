@@ -105,7 +105,7 @@
 </script>
 
 <style scoped>
-  a.click_text:link    {color:blue;}
+  a.click_text:link    {color: #ecf5ff;}
   a.click_text:visited {color:blue;}
   a.click_text:hover   {color:red;}
   a.click_text {text-decoration: underline}

@@ -1,14 +1,13 @@
 <template>
-  <div style="background: linear-gradient(antiquewhite, white); height: 200%;">
+  <div style="background: linear-gradient(#fff0e6, white); height: 200%;">
     <p style="font-size: 32px">{{title}}</p>
     <el-divider></el-divider>
-    <table style="width: 100%; text-align: left; ">
+    <table style="width: 100%; text-align: left;color: #606266">
       <tr style="vertical-align: top">
         <td style="width: 20%; text-align: center; padding-right: 30px">
-          <p style="font-size: 20px">H-index: <b>{{h_index}}</b></p>
+          <p style="font-size: 20px">H-index: <b style="color: #303133">{{h_index}}</b></p>
           <p style="font-size: 20px">Research Fields:</p>
-
-          <p v-for="field in research_fields"><el-tag>{{field}}</el-tag></p>
+          <p v-for="field in research_fields"><el-tag style="cursor: pointer">{{field}}</el-tag></p>
         </td>
 
         <td style="width: 60%; text-align: left; padding-top: 0">
@@ -18,14 +17,14 @@
         </td>
 
         <td style="width: 20%; margin-left: 20px">
-          <p style="font-size: 20px">Scholars similar to <br><b>{{current_author}}</b>:</p>
+          <p style="font-size: 20px">Scholars similar to <br><b style="color: #303133">{{current_author}}</b>:</p>
           <div v-if="has_coauthor">
             <p v-for="ca in co_authors" v-bind:style="{color: text_color(ca.highlight)} ">
               <el-tooltip placement="top">
                 <div slot="content">Similarity: {{ca.similarity}}<br>
                   Number of Collaboration: {{ca.num}}<br><br>
                   CLICK TO SEE DETAIL</div>
-                <el-tag v-bind:color="text_color(ca.highlight)" @click="update(ca.name)"> {{ca.name}}</el-tag>
+                <el-tag style="cursor: pointer" v-bind:color="text_color(ca.highlight)" @click="update(ca.name)"> {{ca.name}}</el-tag>
               </el-tooltip>
               <br>
             </p>
@@ -195,7 +194,7 @@
       text_color: function (h) {
         if (h === true)
           return 'yellow';
-        return 'azure';
+        return '#ECF5FF';
       }
 
     }
