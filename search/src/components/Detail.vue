@@ -163,21 +163,15 @@
       newSearch: function () {
         console.log("make new search");
         if (this.new_query === "")
-        alert("you have entered nothing!");
-      else {
+          alert("you have entered nothing!");
+        else {
+
           if (this.new_query.length >= max_query_length)
             this.new_query = this.new_query.substr(0, max_query_length);   // truncate overly long queries
-          this.$router.push('/result/' + this.new_query + '/' + this.search_type + '/' + this.timespans);
-          this.$axios.get('http://123.57.231.102:8080/search?keyword=' + this.new_query + '&keytype=author')
-            .then(response => {
-              this.results = response.data.result;
-            })
+          this.$router.push('/result/' + this.new_query + '/' + this.search_type + '/all-time');
         }
       },
       highlight: function (authors) {
-        // console.log("highlight now");
-        // console.log(authors);
-        // console.log(this.co_authors);
         for (var i = 0; i < authors.length; i++)
         {
           for (var j = 0; j < this.co_authors.length; j++)

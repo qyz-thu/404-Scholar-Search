@@ -17,23 +17,13 @@
           <p><el-date-picker type="year" v-model="end_year" style="width: 80%" value-format="yyyy" placeholder="end-year">
           </el-date-picker></p>
           <el-button type="primary" v-on:click="selectTime" size="small">选择</el-button>
-
-
-<!--          <a :href="'#/result/' + query + '/' + t.en" style="font-size: 15px; line-height: 25px" v-for="t in times"-->
-<!--          v-on:click="updateTime(t.en)">-->
-<!--            {{t.ch}}<br>-->
-<!--          </a>-->
         </td>
 
         <td v-if="isPaper" style="width: 60%; text-align: left; padding-top: 0">
-          <div>
-            <ResultEntry v-for="paper in papers" v-bind:is-paper="isPaper" v-bind:key="paper.title" v-bind:title="paper.title"
-                         time="xxxx-xx-xx" author="somebody et.al" v-bind:abstract="paper.abstract">
-            </ResultEntry>
-          </div>
           <div v-if="no_results" style="font-size: 25px">
             <b >{{no_result_warning}}</b>
           </div>
+          <PageSelector v-bind:entries="results" v-bind:is-paper="true"></PageSelector>
         </td>
 
         <td v-else style="width: 60%; text-align: left; padding-top: 0">
@@ -41,8 +31,7 @@
             <br> <br>
             <b>{{no_result_warning}}</b>
           </div>
-          <PageSelector v-bind:entries="results" v-bind:is-paper="false">
-          </PageSelector>
+          <PageSelector v-bind:entries="results" v-bind:is-paper="false"></PageSelector>
         </td>
 
         <td style="width: 20%; margin-left: 20px">
@@ -74,7 +63,6 @@
         results: [],
         times: Times,
         new_query: this.$route.params.query,
-        papers: [],
         timespans: this.$route.params.timespan,
         isPaper: false,
         no_result_warning: "Sorry, we found no result matching " +this.$route.params.query,
@@ -97,11 +85,13 @@
         if (this.new_query === "")
           alert("you have entered nothing!");
         else {
+          this.isPaper = this.search_type === "paper";
+          let key_type = this.isPaper? 'paper': 'author';
           if (this.new_query.length >= max_query_length)
             this.new_query = this.new_query.substr(0, max_query_length);   // truncate overly long queries
           this.$router.push('/result/' + this.new_query + '/' + this.search_type  + '/' + this.timespans);
           this.no_result_warning = "Searching...";
-          this.$axios.get('http://123.57.231.102:8080/search?keyword=' + this.new_query + '&keytype=author')
+          this.$axios.get('http://123.57.231.102:8080/search?keyword=' + this.new_query + '&keytype=' + key_type)
             .then(response => {
               this.results = response.data.result;
               this.no_result_warning = "Sorry, we found no result matching " + this.key_word;
@@ -128,11 +118,14 @@
     },
     mounted() {
       console.log(this.search_type);
+      this.isPaper = this.search_type === "paper";
       this.no_result_warning = "Searching...";
+      let key_type = this.isPaper? 'paper': 'author';
       this.$axios
-        .get('http://123.57.231.102:8080/search?keyword=' + this.query + '&keytype=author')
+        .get('http://123.57.231.102:8080/search?keyword=' + this.query + '&keytype=' + key_type)
         .then(response => {
           this.results = response.data.result;
+          console.log(this.results);
           this.no_result_warning = "Sorry, we found no result matching " + this.key_word;
         })
         .catch(error => (console.log(error)));
