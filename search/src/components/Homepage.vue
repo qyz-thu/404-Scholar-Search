@@ -1,14 +1,7 @@
 <template>
-    <div class="main_body">
+    <div class="main_body" style="text-align: center">
       <p>{{welcome}}</p>
       <br><br>
-<!--      <p>-->
-<!--        <input style="zoom: 120%" type="radio" id="scholar_box" value="scholar" name="select" v-model="search_type" checked="true">-->
-<!--        <label for="scholar_box" style="font-size: 20px">Search for scholars</label>-->
-<!--        &nbsp &nbsp &nbsp &nbsp &nbsp-->
-<!--        <input style="zoom: 120%" type="radio" id="paper_box" value="paper" name="select" v-model="search_type">-->
-<!--        <label for="paper_box" style="font-size: 20px">Search for papers</label>-->
-<!--      </p>-->
 
       <el-input class='search' v-model="query" placeholder="What do you want to know?"></el-input> <br>
       <p>
@@ -19,10 +12,27 @@
       <el-button type="primary" style="font-size: 15px" icon="el-icon-search" v-on:click="toSearch">
           Search
         </el-button>
+      <div style="width: 60%; margin: 0 auto;">
+        <span class="demonstration">Tutorial</span>
+        <el-carousel trigger="click" height="150px" style="vertical-align: center">
+<!--          <el-carousel-item v-for="item in 4" :key="item">-->
+<!--            <h3 class="small">{{ item }}</h3>-->
+          <el-carousel-item>
+            1<br>
+            This is a tutorial.
+          </el-carousel-item>
+          <el-carousel-item>
+            2<br>
+            We show you how our search engine works.
+          </el-carousel-item>
+          <el-carousel-item>
+            3<br>
+            Here you can find scholars that are most similar to the one you search for.
+          </el-carousel-item>
+        </el-carousel>
+      </div>
 
-      <!--      <button class="buttons" type="button" v-on:click="toSearch">Search!</button>-->
-
-      <p style="padding-top: 200px">Contact: <el-link style="font-size: 15px">qyz17@mails.tsinghua.edu.cn</el-link></p>
+      <p style="padding-top: 100px">Contact: <el-link style="font-size: 15px">qyz17@mails.tsinghua.edu.cn</el-link></p>
     </div>
 
 </template>
