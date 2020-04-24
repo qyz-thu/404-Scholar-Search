@@ -91,6 +91,14 @@
             this.papers = response.data.result.papers;
             this.h_index = response.data.result.H_index;
           }
+          else
+          {
+            this.co_authors = [];
+            this.research_fields = [];
+            this.papers = [];
+            this.title = "Sorry, we don't have this author in our database now";
+            this.h_index = 0;
+          }
           //console.log(this.co_authors);
           //console.log(this.research_fields);
           //console.log(this.papers);
@@ -176,7 +184,7 @@
         {
           for (var j = 0; j < this.co_authors.length; j++)
             if (authors[i] === this.co_authors[j].name)
-              this.co_authors[j]['highlight'] = true;
+              this.co_authors[j]['highlight']  = true;
         }
         this.$forceUpdate();
       },

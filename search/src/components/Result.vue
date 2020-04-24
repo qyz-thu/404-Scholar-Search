@@ -23,7 +23,7 @@
           <div v-if="no_results" style="font-size: 25px">
             <b >{{no_result_warning}}</b>
           </div>
-          <PageSelector v-bind:entries="results" v-bind:is-paper="true"></PageSelector>
+          <PageSelector @update='update' v-bind:entries="results" v-bind:is-paper="true"></PageSelector>
         </td>
 
         <td v-else style="width: 60%; text-align: left; padding-top: 0">
@@ -114,6 +114,19 @@
         else
           alert("Invalid date input!");
 
+      },
+      update: function (aut) {
+        // console.log("switch to author: " + aut);
+        // this.search_type = 'scholar';
+        // this.isPaper = false;
+        // this.$router.push('/result/' + aut + '/author/' + this.timespans);
+        // this.no_result_warning = "Searching...";
+        // this.$axios.get('http://123.57.231.102:8080/search?keytype=author&keyword=' + aut)
+        //   .then(response => {
+        //     this.results = response.data.result;
+        //     this.no_result_warning = "Sorry, we found no result matching " + this.key_word;
+        //   })
+        this.$router.push('../../../detail/' + aut);
       }
     },
     mounted() {
@@ -129,6 +142,7 @@
           this.no_result_warning = "Sorry, we found no result matching " + this.key_word;
         })
         .catch(error => (console.log(error)));
+
 
     }
   }
