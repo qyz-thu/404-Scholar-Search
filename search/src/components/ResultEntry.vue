@@ -1,6 +1,6 @@
 <template xmlns="http://www.w3.org/1999/html">
   <div v-if='isPaper' style="padding: 10px; border: 1px">
-    <b style="font-size: 18px"><a :href="'#/detail/' + title" >{{title}}</a></b><br>
+    <b style="font-size: 18px"><a :href="'#/paper/' + title" >{{title}}</a></b><br>
     <div>
       <b>Time</b>: {{time}} &nbsp
       <b>Field</b>: <a v-for="f in field">{{f}}; &nbsp</a><br>

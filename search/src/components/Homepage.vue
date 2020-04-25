@@ -9,15 +9,13 @@
         <el-radio style="zoom: 120%" v-model="search_type" label="paper">Search for papers</el-radio>
       </p>
 
-      <el-button type="primary" style="font-size: 15px" icon="el-icon-search" v-on:click="toSearch">
-          Search
-        </el-button>
-      <div style="width: 60%; margin: 0 auto;">
+      <el-button type="primary" style="font-size: 15px" icon="el-icon-search" v-on:click="toSearch">Search</el-button>
+
+      <br><br>
+      <body style="height: 200px; width: 60%; margin: 0 auto;" bgcolor="white">
         <span class="demonstration">Tutorial</span>
         <el-carousel trigger="click" height="150px" style="vertical-align: center">
-<!--          <el-carousel-item v-for="item in 4" :key="item">-->
-<!--            <h3 class="small">{{ item }}</h3>-->
-          <el-carousel-item>
+          <el-carousel-item style="">
             1<br>
             This is a tutorial.
           </el-carousel-item>
@@ -30,9 +28,9 @@
             Here you can find scholars that are most similar to the one you search for.
           </el-carousel-item>
         </el-carousel>
-      </div>
+      </body>
 
-      <p style="padding-top: 100px">Contact: <el-link style="font-size: 15px">qyz17@mails.tsinghua.edu.cn</el-link></p>
+      <p style="padding-top: 50px">Contact: <el-link style="font-size: 15px">qyz17@mails.tsinghua.edu.cn</el-link></p>
     </div>
 
 </template>
