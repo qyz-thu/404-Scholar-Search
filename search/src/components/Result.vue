@@ -120,6 +120,7 @@
       },
       search_field: function (field) {
         console.log("search field " + field);
+        this.$router.push('../../../field/' + field);
       }
     },
     mounted() {
@@ -135,8 +136,6 @@
           this.no_result_warning = "Sorry, we found no result matching " + this.key_word;
         })
         .catch(error => (console.log(error)));
-
-
     }
   }
 </script>

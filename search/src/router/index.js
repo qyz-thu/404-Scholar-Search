@@ -4,6 +4,7 @@ import HelloWorld from '../components/HelloWorld'
 import Homepage from '../components/Homepage'
 import Result from "../components/Result";
 import Detail from "../components/Detail";
+import Field from "../components/Field";
 
 Vue.use(Router);
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/detail/:title',
       name: 'Detail',
       component: Detail
+    },
+    {
+      path: '/field/:field',
+      name: 'Field',
+      component: Field
     }
 
   ]

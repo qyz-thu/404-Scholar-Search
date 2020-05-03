@@ -103,7 +103,6 @@
       click_field: function (field) {
         console.log('click field' + field);
         this.$emit('search_field', field);
-        // TODO: add field search
       },
     },
     }

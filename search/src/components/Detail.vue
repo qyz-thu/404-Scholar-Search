@@ -1,6 +1,5 @@
 <template>
   <div style="background: linear-gradient(#fff0e6, white); height: 200%;">
-    <p style="font-size: 32px">{{title}}</p>
     <el-divider></el-divider>
     <table style="width: 100%; text-align: left;color: #606266">
       <tr style="vertical-align: top">
