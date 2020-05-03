@@ -1,7 +1,7 @@
 <template xmlns="http://www.w3.org/1999/html">
   <div>
     <p v-if="isPaper">
-      <ResultEntry @change_author="change_author" v-for="paper in current_page" v-bind:key="paper.title"
+      <ResultEntry @change_author="change_author"  v-for="paper in current_page" v-bind:key="paper.title"
                    :is-paper="true" v-bind:title="paper.title" v-bind:field="paper.fields"
                    v-bind:time="paper.time" v-bind:author="paper.authors"
                    @mouseover.native="highlight(paper)" @mouseleave.native="de_highlight">
@@ -10,7 +10,7 @@
     </p>
 
     <p v-else>
-      <ResultEntry @change_author="change_author" v-for="people in current_page" v-bind:key="people.name"
+      <ResultEntry @change_author="change_author" @click_field="click_field" v-for="people in current_page" v-bind:key="people.name"
                    v-bind:name="people.name"
                    v-bind:research_field="people.researchFields" ></ResultEntry>
     </p><br>
@@ -99,7 +99,12 @@
       },
       reset: function () {
         this.page_index = 0;
-      }
+      },
+      click_field: function (field) {
+        console.log('click field' + field);
+        this.$emit('search_field', field);
+        // TODO: add field search
+      },
     },
     }
 </script>

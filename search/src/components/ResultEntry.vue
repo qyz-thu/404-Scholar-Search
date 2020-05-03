@@ -14,7 +14,7 @@
   <div v-else style="padding: 10px">
     <b style="font-size: 18px"><a :href="'#/detail/' + name" >{{name}}</a></b><br>
     <div><b>Research fields</b>:
-      <span v-for="f in research_field" :key="f"><el-tag style="cursor: pointer">{{f}}</el-tag>&nbsp</span>
+      <span v-for="f in research_field" :key="f"><el-tag v-on:click="click_field(f)" style="cursor: pointer">{{f}}</el-tag>&nbsp</span>
     </div>
   </div>
 </template>
@@ -36,8 +36,12 @@
       },
       click_author: function (aut) {
         //this.$router.push("")
-        console.log("click author " + aut);
+        //console.log("click author " + aut);
         this.$emit('change_author', aut);
+      },
+      click_field: function (field) {
+        console.log("click field " + field);
+        this.$emit('click_field', field);
       }
     }
   }

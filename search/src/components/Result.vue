@@ -31,7 +31,7 @@
             <br> <br>
             <b>{{no_result_warning}}</b>
           </div>
-          <PageSelector v-bind:entries="results" v-bind:is-paper="false"></PageSelector>
+          <PageSelector @search_field='search_field' v-bind:entries="results" v-bind:is-paper="false"></PageSelector>
         </td>
 
         <td style="width: 20%; margin-left: 20px">
@@ -117,6 +117,9 @@
       },
       update: function (aut) {
         this.$router.push('../../../detail/' + aut);
+      },
+      search_field: function (field) {
+        console.log("search field " + field);
       }
     },
     mounted() {
