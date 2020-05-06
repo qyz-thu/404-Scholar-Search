@@ -39,7 +39,7 @@
     <el-input class='search' v-model="new_query" placeholder="Who else do you want to know?"></el-input>
     <el-button type="primary" style="font-size: 15px" icon="el-icon-search" v-on:click="newSearch">Search!</el-button>
     <p>
-      <el-radio style="zoom: 120%" v-model="search_type" label="scholar">Search for scholars</el-radio>
+      <el-radio style="zoom: 120%" v-model="search_type" label="author">Search for scholars</el-radio>
       <el-radio style="zoom: 120%" v-model="search_type" label="paper">Search for papers</el-radio>
     </p>
   </div>

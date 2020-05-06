@@ -15,14 +15,15 @@
     <b style="font-size: 18px"><a :href="'#/detail/' + name" >{{name}}</a></b><br>
     <div><b>Research fields</b>:
       <span v-for="f in research_field" :key="f"><el-tag v-on:click="click_field(f)" style="cursor: pointer">{{f}}</el-tag>&nbsp</span>
-    </div>
+    </div><br>
+    <b style="font-size: 14px"><p>H-index: {{hindex}}</p></b>
   </div>
 </template>
 
 <script>
   export default {
     name: 'ResultEntry',
-    props: ['isPaper', 'abstract', 'title', 'time', 'author', 'name', 'research_field', 'co_authors', 'field'],
+    props: ['isPaper', 'abstract', 'title', 'time', 'author', 'name', 'research_field', 'co_authors', 'field', 'hindex'],
 
     data: function () {
       return {

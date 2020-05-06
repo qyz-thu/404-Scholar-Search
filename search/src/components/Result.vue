@@ -3,7 +3,7 @@
     <el-input class='search' v-model="new_query" placeholder="What do you want to know?"></el-input>
     <el-button type="primary" style="font-size: 15px" icon="el-icon-search" v-on:click="newSearch">Search!</el-button>
     <p>
-      <el-radio style="zoom: 120%" v-model="search_type" label="scholar">Search for scholars</el-radio>
+      <el-radio style="zoom: 120%" v-model="search_type" label="author">Search for scholars</el-radio>
       <el-radio style="zoom: 120%" v-model="search_type" label="paper">Search for papers</el-radio>
     </p>
     <el-divider></el-divider>
@@ -85,13 +85,13 @@
         if (this.new_query === "")
           alert("you have entered nothing!");
         else {
-          this.isPaper = this.search_type === "paper";
-          let key_type = this.isPaper? 'paper': 'author';
+          // this.isPaper = this.search_type === "paper";
+          // let key_type = this.isPaper? 'paper': 'author';
           if (this.new_query.length >= max_query_length)
             this.new_query = this.new_query.substr(0, max_query_length);   // truncate overly long queries
           this.$router.push('/result/' + this.new_query + '/' + this.search_type  + '/' + this.timespans);
           this.no_result_warning = "Searching...";
-          this.$axios.get('http://123.57.231.102:8080/search?keyword=' + this.new_query + '&keytype=' + key_type)
+          this.$axios.get('http://123.57.231.102:8080/search?keyword=' + this.new_query + '&keytype=' + this.search_type)
             .then(response => {
               this.results = response.data.result;
               this.no_result_warning = "Sorry, we found no result matching " + this.key_word;
@@ -120,7 +120,14 @@
       },
       search_field: function (field) {
         console.log("search field " + field);
-        this.$router.push('../../../field/' + field);
+        this.$router.push('/result/' + field + '/author_field' + '/' + this.timespans);
+          this.no_result_warning = "Searching...";
+          this.new_query=field;
+          this.$axios.get('http://123.57.231.102:8080/search?keyword=' + field + '&keytype=' + 'author_field')
+            .then(response => {
+              this.results = response.data.result;
+              this.no_result_warning = "Sorry, we found no result matching " + this.key_word;
+            })
       }
     },
     mounted() {

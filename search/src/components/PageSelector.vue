@@ -12,6 +12,7 @@
     <p v-else>
       <ResultEntry @change_author="change_author" @click_field="click_field" v-for="people in current_page" v-bind:key="people.name"
                    v-bind:name="people.name"
+                   v-bind:hindex="people.H_index"
                    v-bind:research_field="people.researchFields" ></ResultEntry>
     </p><br>
 
