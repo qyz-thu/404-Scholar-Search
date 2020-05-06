@@ -12,7 +12,7 @@
       <el-button type="primary" style="font-size: 15px" icon="el-icon-search" v-on:click="toSearch">Search</el-button>
 
       <br><br>
-      <body style="height: 400px; width: 800px; margin: 0 auto;" bgcolor="white">
+      <body style="height: 350px; width: 700px; margin: 0 auto; border-style: solid; border-width: 4px; border-color: deepskyblue">
         <el-carousel trigger="click" height="400px" style="vertical-align: center">
           <el-carousel-item style="">
             <img src="../assets/tutorial1.png" width="100%">
