@@ -48,6 +48,7 @@
 <script>
   import ResultEntry from "./ResultEntry";
   import PageSelector from "./PageSelector";
+  import { axiosInstance } from '../axios_config.js'
 
   const Times = [{ch: "全部时间", en: "all-time"}, {ch: "最近一年", en: "last-year"},
     {ch: "最近半年", en: "last-half-year"}, {ch: "最近一月", en: "last-month"}, {ch: "最近一周", en: "last-week"}];
@@ -91,7 +92,8 @@
             this.new_query = this.new_query.substr(0, max_query_length);   // truncate overly long queries
           this.$router.push('/result/' + this.new_query + '/' + this.search_type  + '/' + this.timespans);
           this.no_result_warning = "Searching...";
-          this.$axios.get('http://123.57.231.102:8080/search?keyword=' + this.new_query + '&keytype=' + this.search_type)
+          // this.$axios.get('http://123.57.231.102:8080/search?keyword=' + this.new_query + '&keytype=' + this.search_type)
+          axiosInstance({ url: '/backend_search?keyword=' + this.new_query+ '&keytype=' + this.search_type })
             .then(response => {
               this.results = response.data.result;
               this.no_result_warning = "Sorry, we found no result matching " + this.key_word;
@@ -123,7 +125,8 @@
         this.$router.push('/result/' + field + '/author_field' + '/' + this.timespans);
           this.no_result_warning = "Searching...";
           this.new_query=field;
-          this.$axios.get('http://123.57.231.102:8080/search?keyword=' + field + '&keytype=' + 'author_field')
+          // this.$axios.get('http://123.57.231.102:8080/search?keyword=' + field + '&keytype=' + 'author_field')
+          axiosInstance({ url: '/backend_search?keyword=' + field+ '&keytype=' + 'author_field' })
             .then(response => {
               this.results = response.data.result;
               this.no_result_warning = "Sorry, we found no result matching " + this.key_word;
@@ -135,8 +138,9 @@
       this.isPaper = this.search_type === "paper";
       this.no_result_warning = "Searching...";
       let key_type = this.isPaper? 'paper': 'author';
-      this.$axios
-        .get('http://123.57.231.102:8080/search?keyword=' + this.query + '&keytype=' + key_type)
+      // this.$axios
+        // .get('http://123.57.231.102:8080/search?keyword=' + this.query + '&keytype=' + key_type)
+      axiosInstance({ url: '/backend_search?keyword=' + this.query+ '&keytype=' + key_type })
         .then(response => {
           this.results = response.data.result;
           console.log(this.results);
