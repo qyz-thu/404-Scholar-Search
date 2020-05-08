@@ -23,6 +23,12 @@
           <el-carousel-item>
             <img src="../assets/tutorial3.png" width="100%">
           </el-carousel-item>
+          <el-carousel-item>
+            <img src="../assets/tutorial4.png" width="100%">
+          </el-carousel-item>
+          <el-carousel-item>
+            <img src="../assets/tutorial4.png" width="100%">
+          </el-carousel-item>
         </el-carousel>
       </body>
 

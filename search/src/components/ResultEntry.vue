@@ -13,10 +13,10 @@
 
   <div v-else style="padding: 10px">
     <b style="font-size: 18px"><a :href="'#/detail/' + name" >{{name}}</a></b><br>
-    <div><b>Research fields</b>:
+    <b style="font-size: 14px">H-index: {{hindex}}</b>
+    <div><b style="font-size: 14px">Research fields</b>:
       <span v-for="f in research_field" :key="f"><el-tag v-on:click="click_field(f)" style="cursor: pointer">{{f}}</el-tag>&nbsp</span>
     </div><br>
-    <b style="font-size: 14px"><p>H-index: {{hindex}}</p></b>
   </div>
 </template>
 
