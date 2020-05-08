@@ -38,6 +38,7 @@
 </template>
 
 <script>
+  import { axiosInstance } from '../axios_config.js'
   const max_query_len = 36;
   export default {
       name: 'Homepage',
@@ -66,7 +67,9 @@
           }
       },
     mounted() {
-        this.$axios.get("http://123.57.231.102:8080/homepage_log");
+        // this.$axios.get("http://123.57.231.102:8080/homepage_log");
+        
+        axiosInstance({ url: '/homepage_log'});
     }
   }
 

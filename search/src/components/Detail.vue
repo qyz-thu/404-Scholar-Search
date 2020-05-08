@@ -49,6 +49,7 @@
   import ResultEntry from "./ResultEntry";
   import PageSelector from "./PageSelector";
   const max_query_length = 60;
+  import { axiosInstance } from '../axios_config.js'
 
   export default {
     name: 'Detail',
@@ -76,8 +77,9 @@
 
     },
     beforeMount() {
-      this.$axios
-        .get("http://123.57.231.102:8080/query?name=" + this.title)
+      // this.$axios
+      //   .get("http://123.57.231.102:8080/query?name=" + this.title)
+      axiosInstance({ url: '/backend_query?key=' + this.title })
         .then(response =>{
           //this.http_data = response.data;
           console.log(response.data);
