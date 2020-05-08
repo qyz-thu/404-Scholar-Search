@@ -1,6 +1,7 @@
 <template>
   <div class="main_body" style=" height: 150%">
-    <el-input class='search' v-model="new_query" placeholder="What do you want to know?"></el-input>
+    <el-input class='search' style="width: 40%; margin-top: 10px;  line-height: 30px; border-radius: 5px"
+              v-model="new_query" placeholder="What do you want to know?"></el-input>
     <el-button type="primary" style="font-size: 15px" icon="el-icon-search" v-on:click="newSearch">Search!</el-button>
     <p>
       <el-radio style="zoom: 120%" v-model="search_type" label="author">Search for scholars</el-radio>

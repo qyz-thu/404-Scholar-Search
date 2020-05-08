@@ -3,7 +3,8 @@
       <p>{{welcome}}</p>
       <br><br>
 
-      <el-input class='search' v-model="query" placeholder="What do you want to know?"></el-input> <br>
+      <el-input class='search' style="width: 40%; margin-top: 10px;  line-height: 30px; border-radius: 5px"
+                v-model="query" placeholder="What do you want to know?"></el-input><br>
       <p>
         <el-radio style="zoom: 120%" v-model="search_type" label="author">Search for scholars</el-radio>
         <el-radio style="zoom: 120%" v-model="search_type" label="paper">Search for papers</el-radio>
@@ -68,7 +69,7 @@
       },
     mounted() {
         // this.$axios.get("http://123.57.231.102:8080/homepage_log");
-        
+
         axiosInstance({ url: '/homepage_log'});
     }
   }
