@@ -150,3 +150,6 @@
     }
   }
 </script>
+<style type="text/css">
+  .search {width: 40%; margin-top: 10px;  line-height: 30px; border-radius: 5px}
+</style>
