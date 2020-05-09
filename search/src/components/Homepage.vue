@@ -69,7 +69,6 @@
       },
     mounted() {
         // this.$axios.get("http://123.57.231.102:8080/homepage_log");
-
         axiosInstance({ url: '/homepage_log'});
     }
   }

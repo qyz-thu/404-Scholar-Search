@@ -92,6 +92,7 @@
           if (this.new_query.length >= max_query_length)
             this.new_query = this.new_query.substr(0, max_query_length);   // truncate overly long queries
           this.$router.push('/result/' + this.new_query + '/' + this.search_type  + '/' + this.timespans);
+          this.results = [];
           this.no_result_warning = "Searching...";
           // this.$axios.get('http://123.57.231.102:8080/search?keyword=' + this.new_query + '&keytype=' + this.search_type)
           axiosInstance({ url: '/backend_search?keyword=' + this.new_query+ '&keytype=' + this.search_type })
@@ -124,14 +125,15 @@
       search_field: function (field) {
         console.log("search field " + field);
         this.$router.push('/result/' + field + '/author_field' + '/' + this.timespans);
-          this.no_result_warning = "Searching...";
-          this.new_query=field;
-          // this.$axios.get('http://123.57.231.102:8080/search?keyword=' + field + '&keytype=' + 'author_field')
-          axiosInstance({ url: '/backend_search?keyword=' + field+ '&keytype=' + 'author_field' })
-            .then(response => {
-              this.results = response.data.result;
-              this.no_result_warning = "Sorry, we found no result matching " + this.key_word;
-            })
+        this.results = [];
+        this.no_result_warning = "Searching...";
+        this.new_query=field;
+        // this.$axios.get('http://123.57.231.102:8080/search?keyword=' + field + '&keytype=' + 'author_field')
+        axiosInstance({ url: '/backend_search?keyword=' + field+ '&keytype=author_field' })
+          .then(response => {
+            this.results = response.data.result;
+            this.no_result_warning = "Sorry, we found no result matching " + this.key_word;
+          })
       }
     },
     mounted() {
