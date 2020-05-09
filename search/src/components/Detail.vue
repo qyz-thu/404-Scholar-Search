@@ -121,8 +121,9 @@
       back: function() {
         console.log("you've clicked back.");
         console.log(this.$route.params.title);
-        this.$axios
-          .get("http://123.57.231.102:8080/query?name=" + this.$route.params.title)
+        //this.$axios
+          //.get("http://123.57.231.102:8080/query?name=" + this.$route.params.title)
+        axiosInstance({ url: '/backend_query?name=' + this.$route.params.title })
           .then(response => {
             console.log(response.data);
             if (response.data.status === "success")
@@ -147,9 +148,10 @@
       update: function (aut) {
         console.log("update author to " + aut);
         this.$router.push('/detail/' + aut);
-        this.$axios
-        .get("http://123.57.231.102:8080/query?name=" + aut)
-        .then(response => {
+        // this.$axios
+        // .get("http://123.57.231.102:8080/query?name=" + aut)
+        axiosInstance({ url: '/backend_query?name=' + aut})
+          .then(response => {
           console.log(response.data);
           if (response.data.status === "success")
           {
@@ -175,7 +177,6 @@
         if (this.new_query === "")
           alert("you have entered nothing!");
         else {
-
           if (this.new_query.length >= max_query_length)
             this.new_query = this.new_query.substr(0, max_query_length);   // truncate overly long queries
           this.$router.push('/result/' + this.new_query + '/' + this.search_type + '/all-time');
