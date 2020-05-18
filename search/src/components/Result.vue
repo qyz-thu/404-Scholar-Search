@@ -86,20 +86,20 @@
         console.log("search for " + this.search_type);
         if (this.new_query === "")
           alert("you have entered nothing!");
-        else {
+        else if (this.new_query !== this.$route.params.query || this.search_type !== this.$route.params.type || this.timespans !== this.$route.params.timespan ) {
           // this.isPaper = this.search_type === "paper";
           // let key_type = this.isPaper? 'paper': 'author';
           if (this.new_query.length >= max_query_length)
             this.new_query = this.new_query.substr(0, max_query_length);   // truncate overly long queries
           this.$router.push('/result/' + this.new_query + '/' + this.search_type  + '/' + this.timespans);
-          this.no_result_warning = "Searching...";
-          // this.$axios.get('http://123.57.231.102:8080/search?keyword=' + this.new_query + '&keytype=' + this.search_type)
-          axiosInstance({ url: '/backend_search?keyword=' + this.new_query + '&keytype=' + this.search_type })
-            .then(response => {
-              this.results = response.data.result;
-              this.no_result_warning = "Sorry, we found no result matching " + this.key_word;
-              this.$forceUpdate();
-            })
+          this.$router.go(0);
+          // this.no_result_warning = "Searching...";
+          // // this.$axios.get('http://123.57.231.102:8080/search?keyword=' + this.new_query + '&keytype=' + this.search_type)
+          // axiosInstance({ url: '/backend_search?keyword=' + this.new_query + '&keytype=' + this.search_type })
+          //   .then(response => {
+          //     this.results = response.data.result;
+          //     this.no_result_warning = "Sorry, we found no result matching " + this.key_word;
+          //   })
         }
       },
       selectTime: function () {
