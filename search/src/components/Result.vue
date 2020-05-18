@@ -86,13 +86,23 @@
         console.log("search for " + this.search_type);
         if (this.new_query === "")
           alert("you have entered nothing!");
-        else if (this.new_query !== this.$route.params.query || this.search_type !== this.$route.params.type || this.timespans !== this.$route.params.timespan ) {
+        else {
           // this.isPaper = this.search_type === "paper";
           // let key_type = this.isPaper? 'paper': 'author';
           if (this.new_query.length >= max_query_length)
             this.new_query = this.new_query.substr(0, max_query_length);   // truncate overly long queries
-          this.$router.push('/result/' + this.new_query + '/' + this.search_type  + '/' + this.timespans);
-          this.$router.go(0);
+          let q = this.$route.params.query;
+          let t = this.$route.params.type;
+          let s = this.$route.params.timespan;
+          console.log(q);
+          console.log(t);
+          console.log(s);
+          if (this.new_query !== q || this.search_type !== t || this.timespans !== s)
+          {
+            this.$router.push('/result/' + this.new_query + '/' + this.search_type  + '/' + this.timespans);
+            this.$router.go(0);
+          }
+
           // this.no_result_warning = "Searching...";
           // // this.$axios.get('http://123.57.231.102:8080/search?keyword=' + this.new_query + '&keytype=' + this.search_type)
           // axiosInstance({ url: '/backend_search?keyword=' + this.new_query + '&keytype=' + this.search_type })
