@@ -94,22 +94,12 @@
           let q = this.$route.params.query;
           let t = this.$route.params.type;
           let s = this.$route.params.timespan;
-          console.log(q);
-          console.log(t);
-          console.log(s);
           if (this.new_query !== q || this.search_type !== t || this.timespans !== s)
           {
             this.$router.push('/result/' + this.new_query + '/' + this.search_type  + '/' + this.timespans);
             this.$router.go(0);
           }
 
-          // this.no_result_warning = "Searching...";
-          // // this.$axios.get('http://123.57.231.102:8080/search?keyword=' + this.new_query + '&keytype=' + this.search_type)
-          // axiosInstance({ url: '/backend_search?keyword=' + this.new_query + '&keytype=' + this.search_type })
-          //   .then(response => {
-          //     this.results = response.data.result;
-          //     this.no_result_warning = "Sorry, we found no result matching " + this.key_word;
-          //   })
         }
       },
       selectTime: function () {
@@ -120,12 +110,15 @@
         if (date1 !== "" && date2 !== "" && date1 < date2)
         {
           this.timespans = date1 + '-' + date2;
-          this.$router.push("./" + date1 + '-' + date2);
-          axiosInstance({ url: '/backend_search?keyword=' + this.query+ '&keytype=paper&inf=' + date1 + '&sup=' +date2 })
-            .then(response => {
-              this.results = response.data.result;
-              this.no_result_warning = "Sorry, we found no result matching " + this.key_word;
-            })
+          if (this.timespans !== this.$route.params.timespan)
+          {
+            this.$router.push("./" + date1 + '-' + date2);
+            axiosInstance({ url: '/backend_search?keyword=' + this.query+ '&keytype=paper&inf=' + date1 + '&sup=' +date2 })
+              .then(response => {
+                this.results = response.data.result;
+                this.no_result_warning = "Sorry, we found no result matching " + this.key_word;
+              })
+          }
         }
         else
           alert("Invalid date input!");
