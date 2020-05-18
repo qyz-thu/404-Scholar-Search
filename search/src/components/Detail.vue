@@ -64,7 +64,7 @@
         papers: [],
         new_query: "",
         h_index: 0,
-        search_type: 'scholar',
+        search_type: 'author',
         //http_data: [],
       }
     },

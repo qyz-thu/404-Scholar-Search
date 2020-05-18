@@ -11,13 +11,16 @@
     <table style="width: 100%;text-align: left;color: #606266">
       <tr style="vertical-align: top">
         <td style="width: 20%; text-align: center; padding-right: 30px">
-          <p>当前时间范围：<span style="color: deepskyblue">{{timespans}}</span></p>
-          <span style="font-size: 17px; line-height: 25px">选择时间范围：</span><br>
-          <p><el-date-picker type="year" v-model="start_year" style="width: 80%" value-format="yyyy" placeholder="start-year">
-          </el-date-picker><br></p>
-          <p><el-date-picker type="year" v-model="end_year" style="width: 80%" value-format="yyyy" placeholder="end-year">
-          </el-date-picker></p>
-          <el-button type="primary" v-on:click="selectTime" size="small">选择</el-button>
+          <div v-if="searching_paper">
+            <p>当前时间范围：<span style="color: deepskyblue">{{timespans}}</span></p>
+            <span style="font-size: 17px; line-height: 25px">选择时间范围：</span><br>
+            <p><el-date-picker type="year" v-model="start_year" style="width: 80%" value-format="yyyy" placeholder="start-year">
+            </el-date-picker><br></p>
+            <p><el-date-picker type="year" v-model="end_year" style="width: 80%" value-format="yyyy" placeholder="end-year">
+            </el-date-picker></p>
+            <el-button type="primary" v-on:click="selectTime" size="small">选择</el-button>
+          </div>
+
         </td>
 
         <td v-if="isPaper" style="width: 60%; text-align: left; padding-top: 0">
@@ -79,6 +82,9 @@
       },
       key_word: function () {
         return this.$route.params.query;
+      },
+      searching_paper: function () {
+        return this.search_type === 'paper';
       }
     },
     methods: {
