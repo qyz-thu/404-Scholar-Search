@@ -114,6 +114,11 @@
         {
           this.timespans = date1 + '-' + date2;
           this.$router.push("./" + date1 + '-' + date2);
+          axiosInstance({ url: '/backend_search?keyword=' + this.query+ '&keytype=paper&inf=' + date1 + '&sup=' +date2 })
+            .then(response => {
+              this.results = response.data.result;
+              this.no_result_warning = "Sorry, we found no result matching " + this.key_word;
+            })
         }
         else
           alert("Invalid date input!");
