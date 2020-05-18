@@ -95,15 +95,12 @@
           this.results = [];
           this.no_result_warning = "Searching...";
           // this.$axios.get('http://123.57.231.102:8080/search?keyword=' + this.new_query + '&keytype=' + this.search_type)
-          axiosInstance({ url: '/backend_search?keyword=' + this.new_query+ '&keytype=' + this.search_type })
+          axiosInstance({ url: '/backend_search?keyword=' + this.new_query + '&keytype=' + this.search_type })
             .then(response => {
               this.results = response.data.result;
               this.no_result_warning = "Sorry, we found no result matching " + this.key_word;
             })
         }
-      },
-      updateTime: function (en_time) {
-        this.timespans = en_time;
       },
       selectTime: function () {
         console.log(this.start_year);
@@ -148,7 +145,7 @@
       let key_type = this.isPaper? 'paper': 'author';
       // this.$axios
         // .get('http://123.57.231.102:8080/search?keyword=' + this.query + '&keytype=' + key_type)
-      axiosInstance({ url: '/backend_search?keyword=' + this.query+ '&keytype=' + key_type })
+      axiosInstance({ url: '/backend_search?keyword=' + this.query + '&keytype=' + key_type })
         .then(response => {
           this.results = response.data.result;
           console.log(this.results);
