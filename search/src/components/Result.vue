@@ -20,6 +20,9 @@
             </el-date-picker></p>
             <el-button type="primary" v-on:click="selectTime" size="small">选择</el-button>
           </div>
+          <div v-else>
+            To be implemented: Field Selector
+          </div>
 
         </td>
 
