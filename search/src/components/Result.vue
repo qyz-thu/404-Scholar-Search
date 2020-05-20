@@ -81,7 +81,9 @@
         start_year: '',
         end_year: '',
         selected_field: '',
-        fields: [{value: 'f1', label: 'deep learning'}, {value: 'f2', label: 'data mining'}, {value: 'f3', label: 'machine learning'}],
+        fields: [{value: 'deep learning', label: 'deep learning'},
+          {value: 'data mining', label: 'data mining'},
+          {value: 'machine learning', label: 'machine learning'}],
       }
     },
     computed: {
