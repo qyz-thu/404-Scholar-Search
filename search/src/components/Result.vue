@@ -21,9 +21,10 @@
             <el-button type="primary" v-on:click="selectTime" size="small">选择</el-button>
           </div>
           <div v-else>
-            <el-select v-model="selected_field" clearable placeholder="choose a field">
+            <p><el-select v-model="selected_field" clearable placeholder="choose a field">
               <el-option v-for="field in fields" :key="field.value" :label="field.label" :value="field.value"></el-option>
-            </el-select>
+            </el-select></p>
+            <el-button type="primary" v-on:click="select_field" size="small">选择</el-button>
           </div>
 
         </td>
@@ -152,6 +153,9 @@
             this.results = response.data.result;
             this.no_result_warning = "Sorry, we found no result matching " + this.key_word;
           })
+      },
+      select_field: function () {
+        console.log(this.selected_field);
       }
     },
     mounted() {
