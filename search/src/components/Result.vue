@@ -21,7 +21,9 @@
             <el-button type="primary" v-on:click="selectTime" size="small">选择</el-button>
           </div>
           <div v-else>
-            To be implemented: Field Selector
+            <el-select v-model="selected_field" clearable placeholder="choose a field">
+              <el-option v-for="field in fields" :key="field.value" :label="field.label" :value="field.value"></el-option>
+            </el-select>
           </div>
 
         </td>
@@ -77,6 +79,8 @@
         search_type: this.$route.params.type,
         start_year: '',
         end_year: '',
+        selected_field: '',
+        fields: [{value: 'f1', label: 'deep learning'}, {value: 'f2', label: 'data mining'}, {value: 'f3', label: 'machine learning'}],
       }
     },
     computed: {
