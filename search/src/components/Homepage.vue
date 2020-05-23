@@ -11,7 +11,6 @@
       </p>
 
       <el-button type="primary" style="font-size: 15px" icon="el-icon-search" v-on:click="toSearch">Search</el-button>
-
       <br><br>
       <body style="height: 350px; width: 700px; margin: 0 auto; border-style: solid; border-width: 4px; border-color: deepskyblue">
         <el-carousel trigger="click" height="400px" style="vertical-align: center">
@@ -39,7 +38,7 @@
 </template>
 
 <script>
-  import { axiosInstance } from '../axios_config.js'
+  import { axiosInstance } from '../axios_config.js';
   const max_query_len = 36;
   export default {
       name: 'Homepage',
@@ -51,6 +50,7 @@
               query: "",
               results: {},
               search_type: 'author',
+              orgOptions: {},
           }
       },
       methods: {
@@ -70,6 +70,20 @@
     mounted() {
         // this.$axios.get("http://123.57.231.102:8080/homepage_log");
         axiosInstance({ url: '/homepage_log'});
+      this.orgOptions = {
+        xAxis: {
+          type: 'category',
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [{
+          data: [820, 932, 901, 934, 1290, 1330, 1320],
+          type: 'line',
+          smooth: true
+        }]
+      }
     }
   }
 

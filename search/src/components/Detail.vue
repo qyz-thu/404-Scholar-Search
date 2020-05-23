@@ -1,6 +1,8 @@
 <template>
   <div style="background: linear-gradient(#fff0e6, white); height: 200%;">
     <el-divider></el-divider>
+    <v-chart ref="chart1" :options="orgOptions" :autoresize="true"></v-chart>
+    <el-divider></el-divider>
     <table style="width: 100%; text-align: left;color: #606266">
       <tr style="vertical-align: top">
         <td style="width: 20%; text-align: center; padding-right: 30px">
@@ -65,7 +67,7 @@
         new_query: "",
         h_index: 0,
         search_type: 'author',
-        //http_data: [],
+        orgOptions: {},
       }
     },
     computed: {
@@ -112,6 +114,21 @@
       {
         history.pushState(null, null, document.URL);
         window.addEventListener('popstate', this.back,false);
+      }
+      this.orgOptions = {
+        xAxis: {
+          type: 'value',
+          data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010',
+          '2011', '2012', '2013', '2014', '2015']
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [{
+          data: [5, 7, 9, 11, 13, 15, 17, 19, 18, 16, 14, 12, 10, 8, 6, 4],
+          type: 'line',
+          smooth: true
+        }]
       }
     },
     destroyed() {
