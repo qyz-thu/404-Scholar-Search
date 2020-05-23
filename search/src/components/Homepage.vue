@@ -12,6 +12,9 @@
 
       <el-button type="primary" style="font-size: 15px" icon="el-icon-search" v-on:click="toSearch">Search</el-button>
       <br><br>
+      <Chart id="test" :option="Option"></Chart>
+      <button v-on:click="change_papernum">Change</button>
+
       <body style="height: 350px; width: 700px; margin: 0 auto; border-style: solid; border-width: 4px; border-color: deepskyblue">
         <el-carousel trigger="click" height="400px" style="vertical-align: center">
           <el-carousel-item style="">
@@ -39,18 +42,39 @@
 
 <script>
   import { axiosInstance } from '../axios_config.js';
+  import Chart  from "./Chart";
   const max_query_len = 36;
   export default {
       name: 'Homepage',
       props: {
           welcome: String,
       },
+    computed: {
+      Option: function () {
+        return {
+          xAxis: {
+            data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010',
+              '2011', '2012', '2013', '2014', '2015']
+          },
+          yAxis: {
+            type: 'value'
+          },
+          series: [{
+            data: this.paper_num,
+            type: 'line',
+            smooth: true
+          }]
+        }
+      }
+    },
+    components: {Chart},
       data: function () {
           return {
               query: "",
               results: {},
               search_type: 'author',
               orgOptions: {},
+              paper_num: [],
           }
       },
       methods: {
@@ -65,25 +89,14 @@
                 this.$router.push('/result/' + this.query + stype + '/all-time');
 
               }
+          },
+          change_papernum: function () {
+            this.paper_num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
           }
       },
     mounted() {
         // this.$axios.get("http://123.57.231.102:8080/homepage_log");
         axiosInstance({ url: '/homepage_log'});
-      this.orgOptions = {
-        xAxis: {
-          type: 'category',
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-        },
-        yAxis: {
-          type: 'value'
-        },
-        series: [{
-          data: [820, 932, 901, 934, 1290, 1330, 1320],
-          type: 'line',
-          smooth: true
-        }]
-      }
     }
   }
 

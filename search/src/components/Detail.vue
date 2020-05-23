@@ -1,7 +1,7 @@
 <template>
   <div style="background: linear-gradient(#fff0e6, white); height: 200%;">
     <el-divider></el-divider>
-    <v-chart ref="chart1" :options="orgOptions" :autoresize="true" watch-shallow></v-chart>
+    <Chart :option="orgOptions"></Chart>
     <el-divider></el-divider>
     <table style="width: 100%; text-align: left;color: #606266">
       <tr style="vertical-align: top">
@@ -51,12 +51,13 @@
 <script>
   import ResultEntry from "./ResultEntry";
   import PageSelector from "./PageSelector";
+  import Chart from "./Chart";
   const max_query_length = 60;
   import { axiosInstance } from '../axios_config.js'
 
   export default {
     name: 'Detail',
-    components: {PageSelector, result_entry: ResultEntry},
+    components: {PageSelector, result_entry: ResultEntry, Chart},
     data: function () {
       return {
         isPaper: false,
@@ -67,7 +68,6 @@
         new_query: "",
         h_index: 0,
         search_type: 'author',
-        orgOptions: {},
         paper_num: [],
       }
     },
@@ -78,7 +78,23 @@
       current_author: function () {
         return this.$route.params.title;
       },
-
+      orgOptions: function () {
+        return {
+          xAxis: {
+            type: 'category',
+            data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010',
+              '2011', '2012', '2013', '2014', '2015']
+          },
+          yAxis: {
+            type: 'value'
+          },
+          series: [{
+            data: this.paper_num,
+            type: 'line',
+            smooth: true
+          }]
+        };
+      }
     },
     beforeMount() {
       // this.$axios
@@ -110,21 +126,21 @@
           //console.log(this.papers);
         })
         .catch(error =>(console.log(error)));
-      this.orgOptions = {
-        xAxis: {
-          type: 'category',
-          data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010',
-            '2011', '2012', '2013', '2014', '2015']
-        },
-        yAxis: {
-          type: 'value'
-        },
-        series: [{
-          data: this.paper_num,
-          type: 'line',
-          smooth: true
-        }]
-      };
+      // this.orgOptions = {
+      //   xAxis: {
+      //     type: 'category',
+      //     data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010',
+      //       '2011', '2012', '2013', '2014', '2015']
+      //   },
+      //   yAxis: {
+      //     type: 'value'
+      //   },
+      //   series: [{
+      //     data: this.paper_num,
+      //     type: 'line',
+      //     smooth: true
+      //   }]
+      // };
       this.$forceUpdate();
     },
     mounted() {
@@ -157,21 +173,21 @@
               this.title = this.$route.params.title;
               this.h_index = response.data.result.H_index;
               this.paper_num = response.data.result.paper_cnt;
-              this.orgOptions = {
-                xAxis: {
-                  type: 'category',
-                  data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010',
-                    '2011', '2012', '2013', '2014', '2015']
-                },
-                yAxis: {
-                  type: 'value'
-                },
-                series: [{
-                  data: this.paper_num,
-                  type: 'line',
-                  smooth: true
-                }]
-              };
+              // this.orgOptions = {
+              //   xAxis: {
+              //     type: 'category',
+              //     data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010',
+              //       '2011', '2012', '2013', '2014', '2015']
+              //   },
+              //   yAxis: {
+              //     type: 'value'
+              //   },
+              //   series: [{
+              //     data: this.paper_num,
+              //     type: 'line',
+              //     smooth: true
+              //   }]
+              // };
               this.$forceUpdate();
             }
             else {
@@ -202,21 +218,21 @@
             this.h_index = response.data.result.H_index;
             this.paper_num = response.data.result.paper_cnt;
             this.title = aut;
-            this.orgOptions = {
-              xAxis: {
-                type: 'category',
-                data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010',
-                  '2011', '2012', '2013', '2014', '2015']
-              },
-              yAxis: {
-                type: 'value'
-              },
-              series: [{
-                data: this.paper_num,
-                type: 'line',
-                smooth: true
-              }]
-            };
+            // this.orgOptions = {
+            //   xAxis: {
+            //     type: 'category',
+            //     data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010',
+            //       '2011', '2012', '2013', '2014', '2015']
+            //   },
+            //   yAxis: {
+            //     type: 'value'
+            //   },
+            //   series: [{
+            //     data: this.paper_num,
+            //     type: 'line',
+            //     smooth: true
+            //   }]
+            // };
             this.$forceUpdate();
           }
           else {
