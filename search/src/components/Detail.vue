@@ -1,7 +1,7 @@
 <template>
   <div style="background: linear-gradient(#fff0e6, white); height: 200%;">
     <el-divider></el-divider>
-    <v-chart ref="chart1" :options="orgOptions" :autoresize="true"></v-chart>
+    <v-chart ref="chart1" :options="orgOptions" :autoresize="true" watch-shallow></v-chart>
     <el-divider></el-divider>
     <table style="width: 100%; text-align: left;color: #606266">
       <tr style="vertical-align: top">
