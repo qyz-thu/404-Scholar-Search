@@ -12,8 +12,8 @@
 
       <el-button type="primary" style="font-size: 15px" icon="el-icon-search" v-on:click="toSearch">Search</el-button>
       <br><br>
-      <Chart id="test" :option="Option"></Chart>
-      <button v-on:click="change_papernum">Change</button>
+<!--      <Chart id="test" :option="Option"></Chart>-->
+<!--      <button v-on:click="change_papernum">Change</button>-->
 
       <body style="height: 350px; width: 700px; margin: 0 auto; border-style: solid; border-width: 4px; border-color: deepskyblue">
         <el-carousel trigger="click" height="400px" style="vertical-align: center">
@@ -50,22 +50,7 @@
           welcome: String,
       },
     computed: {
-      Option: function () {
-        return {
-          xAxis: {
-            data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010',
-              '2011', '2012', '2013', '2014', '2015']
-          },
-          yAxis: {
-            type: 'value'
-          },
-          series: [{
-            data: this.paper_num,
-            type: 'line',
-            smooth: true
-          }]
-        }
-      }
+
     },
     components: {Chart},
       data: function () {
@@ -90,9 +75,9 @@
 
               }
           },
-          change_papernum: function () {
-            this.paper_num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-          }
+          // change_papernum: function () {
+          //   this.paper_num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+          // }
       },
     mounted() {
         // this.$axios.get("http://123.57.231.102:8080/homepage_log");
