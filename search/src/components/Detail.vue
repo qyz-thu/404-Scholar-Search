@@ -1,7 +1,7 @@
 <template>
   <div style="background: linear-gradient(#fff0e6, white); height: 200%;">
     <el-divider></el-divider>
-    <Chart :option="orgOptions"></Chart>
+    <Chart id='chart' :option="orgOptions"></Chart>
     <el-divider></el-divider>
     <table style="width: 100%; text-align: left;color: #606266">
       <tr style="vertical-align: top">
@@ -57,7 +57,7 @@
 
   export default {
     name: 'Detail',
-    components: {PageSelector, result_entry: ResultEntry, Chart},
+    components: {PageSelector, Chart, result_entry: ResultEntry},
     data: function () {
       return {
         isPaper: false,
@@ -81,7 +81,6 @@
       orgOptions: function () {
         return {
           xAxis: {
-            type: 'category',
             data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010',
               '2011', '2012', '2013', '2014', '2015']
           },
@@ -112,6 +111,7 @@
             this.papers = response.data.result.papers;
             this.h_index = response.data.result.H_index;
             this.paper_num = response.data.result.paper_cnt;
+            console.log(this.orgOptions);
           }
           else
           {
@@ -121,9 +121,6 @@
             this.title = "Sorry, we don't have this author in our database now";
             this.h_index = 0;
           }
-          //console.log(this.co_authors);
-          //console.log(this.research_fields);
-          //console.log(this.papers);
         })
         .catch(error =>(console.log(error)));
       // this.orgOptions = {
