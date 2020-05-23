@@ -68,6 +68,7 @@
         h_index: 0,
         search_type: 'author',
         orgOptions: {},
+        paper_num: [],
       }
     },
     computed: {
@@ -94,6 +95,7 @@
             this.research_fields = response.data.result.researchFields;
             this.papers = response.data.result.papers;
             this.h_index = response.data.result.H_index;
+            this.paper_num = response.data.result.paper_cnt;
           }
           else
           {
@@ -125,7 +127,7 @@
           type: 'value'
         },
         series: [{
-          data: [5, 7, 9, 11, 13, 15, 17, 19, 18, 16, 14, 12, 10, 8, 6, 4],
+          data: this.paper_num,
           type: 'line',
           smooth: true
         }]
@@ -151,6 +153,7 @@
               this.research_fields = response.data.result.researchFields;
               this.papers = response.data.result.papers;
               this.title = this.$route.params.title;
+              this.H_index = response.data.result.paper_cnt;
             }
             else {
               this.co_authors = [];
@@ -177,6 +180,8 @@
               this.co_authors[i]['highlight'] = false;
             this.research_fields = response.data.result.researchFields;
             this.papers = response.data.result.papers;
+            this.h_index = response.data.result.H_index;
+            this.paper_num = response.data.result.paper_cnt;
             this.title = aut;
           }
           else {
