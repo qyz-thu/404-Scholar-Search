@@ -1,7 +1,9 @@
 <template>
   <div style="background: linear-gradient(#fff0e6, white); height: 200%;">
+    <p><b style="font-size: 25px">{{title}}</b></p>
     <el-divider></el-divider>
-    <Chart id='chart' :option="orgOptions"></Chart>
+    <p>论文发表数 - 时间</p>
+    <Chart id='chart' :option="orgOptions" width="70%" height="200px"></Chart>
     <el-divider></el-divider>
     <table style="width: 100%; text-align: left;color: #606266">
       <tr style="vertical-align: top">
@@ -82,10 +84,12 @@
         return {
           xAxis: {
             data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010',
-              '2011', '2012', '2013', '2014', '2015']
+              '2011', '2012', '2013', '2014', '2015'],
+            name: 'Year',
           },
           yAxis: {
-            type: 'value'
+            type: 'value',
+            name: 'Paper Number',
           },
           series: [{
             data: this.paper_num,
