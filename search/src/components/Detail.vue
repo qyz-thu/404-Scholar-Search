@@ -94,7 +94,6 @@
           series: [{
             data: this.paper_num,
             type: 'line',
-            smooth: true
           }]
         };
       }
