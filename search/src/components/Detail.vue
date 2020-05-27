@@ -3,7 +3,9 @@
     <p><b style="font-size: 25px">{{title}}</b></p>
     <el-divider></el-divider>
     <p>论文发表数 - 时间</p>
-    <Chart id='chart' :option="orgOptions" width="70%" height="200px"></Chart>
+    <div style="text-align: center">
+      <Chart id='chart' :option="orgOptions" width="70%" height="200px"></Chart>
+    </div>
     <el-divider></el-divider>
     <table style="width: 100%; text-align: left;color: #606266">
       <tr style="vertical-align: top">

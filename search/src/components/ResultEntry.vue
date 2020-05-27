@@ -1,5 +1,5 @@
 <template xmlns="http://www.w3.org/1999/html">
-  <div v-if='isPaper' style="padding: 10px; border: 1px; height: 150px">
+  <div v-if='isPaper' style="padding: 10px; border: 1px; height: 100px">
     <b style="font-size: 18px"><a :href="'#/paper/' + title" >{{title}}</a></b><br>
     <div>
       <b>Time</b>: {{time}} &nbsp
@@ -29,8 +29,7 @@
 
     data: function () {
       return {
-       // title: "",
-       // abstract: ""
+
       }
     },
     methods: {
@@ -38,8 +37,6 @@
         //this.$router.push('../detail/' + this.title);
       },
       click_author: function (aut) {
-        //this.$router.push("")
-        //console.log("click author " + aut);
         this.$emit('change_author', aut);
       },
       click_field: function (field) {
