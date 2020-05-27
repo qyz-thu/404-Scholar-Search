@@ -12,8 +12,6 @@
 
       <el-button type="primary" style="font-size: 15px" icon="el-icon-search" v-on:click="toSearch">Search</el-button>
       <br><br>
-<!--      <Chart id="test" :option="Option"></Chart>-->
-<!--      <button v-on:click="change_papernum">Change</button>-->
 
       <body style="height: 350px; width: 700px; margin: 0 auto; border-style: solid; border-width: 4px; border-color: deepskyblue">
         <el-carousel trigger="click" height="400px" style="vertical-align: center">
