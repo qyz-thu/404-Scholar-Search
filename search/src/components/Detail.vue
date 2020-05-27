@@ -2,9 +2,8 @@
   <div style="background: linear-gradient(#fff0e6, white); height: 200%;">
     <p><b style="font-size: 25px">{{title}}</b></p>
     <el-divider></el-divider>
-    <p>论文发表数 - 时间</p>
-    <div style="text-align: center">
-      <Chart id='chart' :option="orgOptions" width="70%" height="200px"></Chart>
+    <div style="text-align: center; margin: auto; width: 60%">
+      <Chart id='chart' :option="orgOptions" height="200px"></Chart>
     </div>
     <el-divider></el-divider>
     <table style="width: 100%; text-align: left;color: #606266">
@@ -86,6 +85,7 @@
         return {
           title: {
             text: "论文发表数 - 时间",
+            left: 'center'
           },
           xAxis: {
             data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010',
