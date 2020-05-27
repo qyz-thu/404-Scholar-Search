@@ -9,6 +9,7 @@
         {{aut}}</el-tag>&nbsp
       </span>
     </div>
+    <el-divider></el-divider>
   </div>
 
   <div v-else style="padding: 10px; border: 1px; height: 150px">
@@ -17,6 +18,7 @@
     <div><b style="font-size: 14px">Research fields</b>:
       <span v-for="f in research_field" :key="f"><el-tag v-on:click="click_field(f)" style="cursor: pointer">{{f}}</el-tag>&nbsp</span>
     </div><br>
+    <el-divider></el-divider>
   </div>
 </template>
 
