@@ -157,7 +157,13 @@
           })
       },
       select_field: function () {
-        console.log(this.selected_field);
+        // console.log(this.selected_field);
+        this.$router.push('/result/'+this.query+'/author_adv'+'/'+this.selected_field);
+        axiosInstance({ url: '/backend_search?keyword=' + this.query+ '&keytype=author_adv&fields='+this.selected_field })
+          .then(response => {
+            this.results = response.data.result;
+            this.no_result_warning = "Sorry, we found no result matching " + this.key_word;
+          })
       }
     },
     mounted() {
@@ -172,6 +178,13 @@
           this.results = response.data.result;
           console.log(this.results);
           this.no_result_warning = "Sorry, we found no result matching " + this.key_word;
+          if(key_type=='author'){
+            this.fields=[]
+            for(var i=0;i<response.data.fields.length;i++){
+              this.fields.push({value: response.data.fields[i], label: response.data.fields[i]})
+            }
+          }
+          console.log(this.fields)
         })
         .catch(error => (console.log(error)));
     }
