@@ -5,11 +5,18 @@ import App from './App'
 import router from './router'
 import axios from 'axios';
 import Element from 'element-ui';
+import ECharts from 'vue-echarts';
+import echarts from 'echarts';
 import 'element-ui/lib/theme-chalk/index.css';
+import 'echarts/lib/chart/bar'
+import 'echarts/lib/component/tooltip'
+import 'echarts/lib/chart/line'
 
 Vue.use(Element);
 Vue.prototype.$axios = axios;
+Vue.prototype.$echarts = echarts;
 Vue.config.productionTip = false;
+//Vue.component('v-chart', ECharts);
 
 /* eslint-disable no-new */
 new Vue({

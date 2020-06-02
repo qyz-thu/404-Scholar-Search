@@ -1,5 +1,10 @@
 <template>
   <div style="background: linear-gradient(#fff0e6, white); height: 200%;">
+    <p><b style="font-size: 25px">{{title}}</b></p>
+    <el-divider></el-divider>
+    <div style="text-align: center; margin: auto; width: 60%">
+      <Chart id='chart' :option="orgOptions" height="200px"></Chart>
+    </div>
     <el-divider></el-divider>
     <table style="width: 100%; text-align: left;color: #606266">
       <tr style="vertical-align: top">
@@ -49,12 +54,13 @@
 <script>
   import ResultEntry from "./ResultEntry";
   import PageSelector from "./PageSelector";
+  import Chart from "./Chart";
   const max_query_length = 60;
   import { axiosInstance } from '../axios_config.js'
 
   export default {
     name: 'Detail',
-    components: {PageSelector, result_entry: ResultEntry},
+    components: {PageSelector, Chart, result_entry: ResultEntry},
     data: function () {
       return {
         isPaper: false,
@@ -65,7 +71,7 @@
         new_query: "",
         h_index: 0,
         search_type: 'author',
-        //http_data: [],
+        paper_num: [],
       }
     },
     computed: {
@@ -75,7 +81,27 @@
       current_author: function () {
         return this.$route.params.title;
       },
-
+      orgOptions: function () {
+        return {
+          title: {
+            text: "论文发表数 - 时间",
+            left: 'center'
+          },
+          xAxis: {
+            data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010',
+              '2011', '2012', '2013', '2014', '2015'],
+            name: 'Year',
+          },
+          yAxis: {
+            type: 'value',
+            name: 'Paper Number',
+          },
+          series: [{
+            data: this.paper_num,
+            type: 'line',
+          }]
+        };
+      }
     },
     beforeMount() {
       // this.$axios
@@ -92,6 +118,8 @@
             this.research_fields = response.data.result.researchFields;
             this.papers = response.data.result.papers;
             this.h_index = response.data.result.H_index;
+            this.paper_num = response.data.result.paper_cnt;
+            console.log(this.orgOptions);
           }
           else
           {
@@ -101,11 +129,24 @@
             this.title = "Sorry, we don't have this author in our database now";
             this.h_index = 0;
           }
-          //console.log(this.co_authors);
-          //console.log(this.research_fields);
-          //console.log(this.papers);
         })
         .catch(error =>(console.log(error)));
+      // this.orgOptions = {
+      //   xAxis: {
+      //     type: 'category',
+      //     data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010',
+      //       '2011', '2012', '2013', '2014', '2015']
+      //   },
+      //   yAxis: {
+      //     type: 'value'
+      //   },
+      //   series: [{
+      //     data: this.paper_num,
+      //     type: 'line',
+      //     smooth: true
+      //   }]
+      // };
+      this.$forceUpdate();
     },
     mounted() {
       if (window.history && window.history.pushState)
@@ -113,6 +154,7 @@
         history.pushState(null, null, document.URL);
         window.addEventListener('popstate', this.back,false);
       }
+
     },
     destroyed() {
       window.removeEventListener('popstate', this.back, false);
@@ -134,6 +176,24 @@
               this.research_fields = response.data.result.researchFields;
               this.papers = response.data.result.papers;
               this.title = this.$route.params.title;
+              this.h_index = response.data.result.H_index;
+              this.paper_num = response.data.result.paper_cnt;
+              // this.orgOptions = {
+              //   xAxis: {
+              //     type: 'category',
+              //     data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010',
+              //       '2011', '2012', '2013', '2014', '2015']
+              //   },
+              //   yAxis: {
+              //     type: 'value'
+              //   },
+              //   series: [{
+              //     data: this.paper_num,
+              //     type: 'line',
+              //     smooth: true
+              //   }]
+              // };
+              this.$forceUpdate();
             }
             else {
               this.co_authors = [];
@@ -160,7 +220,25 @@
               this.co_authors[i]['highlight'] = false;
             this.research_fields = response.data.result.researchFields;
             this.papers = response.data.result.papers;
+            this.h_index = response.data.result.H_index;
+            this.paper_num = response.data.result.paper_cnt;
             this.title = aut;
+            // this.orgOptions = {
+            //   xAxis: {
+            //     type: 'category',
+            //     data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010',
+            //       '2011', '2012', '2013', '2014', '2015']
+            //   },
+            //   yAxis: {
+            //     type: 'value'
+            //   },
+            //   series: [{
+            //     data: this.paper_num,
+            //     type: 'line',
+            //     smooth: true
+            //   }]
+            // };
+            this.$forceUpdate();
           }
           else {
             this.co_authors = [];

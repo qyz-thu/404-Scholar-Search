@@ -1,5 +1,5 @@
 <template xmlns="http://www.w3.org/1999/html">
-  <div v-if='isPaper' style="padding: 10px; border: 1px">
+  <div v-if='isPaper' style="padding: 10px; border: 1px; height: 100px">
     <b style="font-size: 18px"><a :href="'#/paper/' + title" >{{title}}</a></b><br>
     <div>
       <b>Time</b>: {{time}} &nbsp
@@ -9,14 +9,16 @@
         {{aut}}</el-tag>&nbsp
       </span>
     </div>
+    <el-divider></el-divider>
   </div>
 
-  <div v-else style="padding: 10px">
+  <div v-else style="padding: 10px; border: 1px; height: 150px">
     <b style="font-size: 18px"><a :href="'#/detail/' + name" >{{name}}</a></b><br>
     <b style="font-size: 14px">H-index: {{hindex}}</b>
     <div><b style="font-size: 14px">Research fields</b>:
       <span v-for="f in research_field" :key="f"><el-tag v-on:click="click_field(f)" style="cursor: pointer">{{f}}</el-tag>&nbsp</span>
     </div><br>
+    <el-divider></el-divider>
   </div>
 </template>
 
@@ -27,8 +29,7 @@
 
     data: function () {
       return {
-       // title: "",
-       // abstract: ""
+
       }
     },
     methods: {
@@ -36,8 +37,6 @@
         //this.$router.push('../detail/' + this.title);
       },
       click_author: function (aut) {
-        //this.$router.push("")
-        //console.log("click author " + aut);
         this.$emit('change_author', aut);
       },
       click_field: function (field) {

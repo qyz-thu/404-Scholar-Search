@@ -11,8 +11,8 @@
       </p>
 
       <el-button type="primary" style="font-size: 15px" icon="el-icon-search" v-on:click="toSearch">Search</el-button>
-
       <br><br>
+
       <body style="height: 350px; width: 700px; margin: 0 auto; border-style: solid; border-width: 4px; border-color: deepskyblue">
         <el-carousel trigger="click" height="400px" style="vertical-align: center">
           <el-carousel-item style="">
@@ -39,18 +39,25 @@
 </template>
 
 <script>
-  import { axiosInstance } from '../axios_config.js'
+  import { axiosInstance } from '../axios_config.js';
+  import Chart  from "./Chart";
   const max_query_len = 36;
   export default {
       name: 'Homepage',
       props: {
           welcome: String,
       },
+    computed: {
+
+    },
+    components: {Chart},
       data: function () {
           return {
               query: "",
               results: {},
               search_type: 'author',
+              orgOptions: {},
+              paper_num: [],
           }
       },
       methods: {
@@ -65,7 +72,10 @@
                 this.$router.push('/result/' + this.query + stype + '/all-time');
 
               }
-          }
+          },
+          // change_papernum: function () {
+          //   this.paper_num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+          // }
       },
     mounted() {
         // this.$axios.get("http://123.57.231.102:8080/homepage_log");
