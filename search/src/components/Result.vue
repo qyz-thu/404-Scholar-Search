@@ -48,11 +48,11 @@
           <div v-if="isPaper">
             <img src="../assets/CVPR.jpg" width="80%" style="margin-top: 20px; margin-left: 20px">
           </div>
-          <div v-else style="font-size: 16px">
+          <div v-else style="font-size: 17px">
             寻找到<b style="color: #6bcaff">{{author_num}}</b>位学者，<br>
             共涉及<b style="color: #6bcaff">{{field_num}}</b>个领域.<br><br>
             其中，发表论文最多的有<b style="color: #6bcaff">{{max_pc}}</b>篇，<br>
-            引用数最高的有<b style="color: #6bcaff">{{avg_cn}}</b>次引用。<br><br>
+            引用数最高的有<b style="color: #6bcaff">{{max_cn}}</b>次引用。<br><br>
             平均发表了<b style="color: #6bcaff">{{avg_pc}}</b>篇论文，<br>
             有<b style="color: #6bcaff">{{avg_cn}}</b>次引用。
             <br>
@@ -212,8 +212,8 @@
             this.author_num = response.data.meta.author_cnt;
             this.max_pc = response.data.meta.max_pc;
             this.max_cn = response.data.meta.max_cn;
-            this.avg_cn = response.data.meta.avg_cn;
-            this.avg_pc = response.data.meta.avg_pc;
+            this.avg_cn = response.data.meta.avg_cn.toFixed(2);
+            this.avg_pc = response.data.meta.avg_pc.toFixed(2);
             this.field_num = response.data.meta.field_cnt;
           }
 

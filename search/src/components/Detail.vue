@@ -178,21 +178,7 @@
               this.title = this.$route.params.title;
               this.h_index = response.data.result.H_index;
               this.paper_num = response.data.result.paper_cnt;
-              // this.orgOptions = {
-              //   xAxis: {
-              //     type: 'category',
-              //     data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010',
-              //       '2011', '2012', '2013', '2014', '2015']
-              //   },
-              //   yAxis: {
-              //     type: 'value'
-              //   },
-              //   series: [{
-              //     data: this.paper_num,
-              //     type: 'line',
-              //     smooth: true
-              //   }]
-              // };
+
               this.$forceUpdate();
             }
             else {
