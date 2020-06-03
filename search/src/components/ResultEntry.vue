@@ -14,7 +14,7 @@
 
   <div v-else style="padding: 10px; border: 1px; height: 150px">
     <b style="font-size: 18px"><a :href="'#/detail/' + name" >{{name}}</a></b><br>
-    <b style="font-size: 14px">H-index: {{hindex}}</b>
+    <b style="font-size: 14px">H-index: {{hindex}}&nbsp Publish: {{publish}}&nbsp Citation: {{citation}}</b>
     <div><b style="font-size: 14px">Research fields</b>:
       <span v-for="f in research_field" :key="f"><el-tag v-on:click="click_field(f)" style="cursor: pointer">{{f}}</el-tag>&nbsp</span>
     </div><br>
@@ -25,7 +25,8 @@
 <script>
   export default {
     name: 'ResultEntry',
-    props: ['isPaper', 'abstract', 'title', 'time', 'author', 'name', 'research_field', 'co_authors', 'field', 'hindex'],
+    props: ['isPaper', 'abstract', 'title', 'time', 'author', 'name', 'research_field',
+      'co_authors', 'field', 'hindex', 'publish', 'citation'],
 
     data: function () {
       return {

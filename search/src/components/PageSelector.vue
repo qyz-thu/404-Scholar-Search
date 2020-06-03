@@ -13,7 +13,9 @@
       <ResultEntry @change_author="change_author" @click_field="click_field" v-for="people in current_page" v-bind:key="people.name"
                    v-bind:name="people.name"
                    v-bind:hindex="people.H_index"
-                   v-bind:research_field="people.researchFields" ></ResultEntry>
+                   v-bind:research_field="people.researchFields" v-bind:publish="people.pc" v-bind:citation="people.cn" >
+
+      </ResultEntry>
     </p><br>
 
     <p style="text-align: center; font-family: Arial,serif; color: #909399">

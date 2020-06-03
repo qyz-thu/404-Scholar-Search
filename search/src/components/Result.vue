@@ -178,8 +178,8 @@
           this.results = response.data.result;
           console.log(this.results);
           this.no_result_warning = "Sorry, we found no result matching " + this.key_word;
-          if(key_type=='author'){
-            this.fields=[]
+          if(key_type === 'author'){
+            this.fields=[];
             for(var i=0;i<response.data.fields.length;i++){
               this.fields.push({value: response.data.fields[i], label: response.data.fields[i]})
             }
