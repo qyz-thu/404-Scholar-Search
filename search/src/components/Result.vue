@@ -45,8 +45,18 @@
         </td>
 
         <td style="width: 20%; margin-left: 20px">
-          Space for JOJO references<br>
-          <img src="../assets/CVPR.jpg" width="80%" style="margin-top: 20px; margin-left: 20px">
+          <div v-if="isPaper">
+            <img src="../assets/CVPR.jpg" width="80%" style="margin-top: 20px; margin-left: 20px">
+          </div>
+          <div v-else>
+            寻找到<b style="color: #6bcaff">{{author_num}}</b>位学者，
+            共来自<b style="color: #6bcaff">{{field_num}}</b>个领域.<br>
+            其中，发表论文最多的有<b style="color: #6bcaff">{{max_pc}}</b>篇，
+            引用数最高的有<b style="color: #6bcaff">{{avg_cn}}</b>次引用。<br>
+            平均发表了<b style="color: #6bcaff">{{avg_pc}}</b>篇论文，有<b style="color: #6bcaff">{{max_cn}}</b>次引用。
+            <br>
+          </div>
+          <b></b>
         </td>
       </tr>
 
@@ -84,6 +94,12 @@
         fields: [{value: 'deep learning', label: 'deep learning'},
           {value: 'data mining', label: 'data mining'},
           {value: 'machine learning', label: 'machine learning'}],
+        author_num: 0,
+        max_cn: 0,
+        max_pc: 0,
+        avg_cn: 0,
+        avg_pc: 0,
+        field_num: 0,
       }
     },
     computed: {
@@ -182,7 +198,14 @@
         // .get('http://123.57.231.102:8080/search?keyword=' + this.query + '&keytype=' + key_type)
       axiosInstance({ url: '/backend_search?keyword=' + this.query + '&keytype=' + key_type })
         .then(response => {
+          console.log(response.data.meta);
           this.results = response.data.result;
+          this.author_num = response.data.meta.author_cnt;
+          this.max_pc = response.data.meta.max_pc;
+          this.max_cn = response.data.meta.max_cn;
+          this.avg_cn = response.data.meta.avg_cn;
+          this.avg_pc = response.data.meta.avg_pc;
+          this.field_num = response.data.meta.field_cnt;
           console.log(this.results);
           this.no_result_warning = "Sorry, we found no result matching " + this.key_word;
           if(key_type === 'author'){
