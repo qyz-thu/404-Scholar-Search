@@ -168,6 +168,12 @@
         axiosInstance({ url: '/backend_search?keyword=' + field+ '&keytype=author_field' })
           .then(response => {
             this.results = response.data.result;
+            this.author_num = response.data.meta.author_cnt;
+            this.max_pc = response.data.meta.max_pc;
+            this.max_cn = response.data.meta.max_cn;
+            this.avg_cn = response.data.meta.avg_cn;
+            this.avg_pc = response.data.meta.avg_pc;
+            this.field_num = response.data.meta.field_cnt;
             this.no_result_warning = "Sorry, we found no result matching " + this.key_word;
           })
       },
