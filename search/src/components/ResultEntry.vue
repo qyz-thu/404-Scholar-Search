@@ -1,9 +1,8 @@
 <template xmlns="http://www.w3.org/1999/html">
-  <div v-if='isPaper' style="padding: 10px; border: 1px; height: 100px">
+  <div v-if='isPaper' style="padding: 10px; border: 1px; height: 100px; background-color: whitesmoke">
     <b style="font-size: 18px"><a :href="'#/paper/' + title" >{{title}}</a></b><br>
     <div>
       <b>Time</b>: {{time}} &nbsp <br>
-<!--      <b>Field</b>: <a v-for="f in field">{{f}}; &nbsp</a><br>-->
       <b>Author</b>:
       <span v-for="aut in author"><el-tag v-on:click="click_author(aut)" :href="'#/detail/' + aut" style="cursor: pointer">
         {{aut}}</el-tag>&nbsp
@@ -12,7 +11,7 @@
     <el-divider></el-divider>
   </div>
 
-  <div v-else style="padding: 10px; border: 1px; height: 150px">
+  <div v-else style="padding: 10px; border: 1px; height: 150px; background-color: whitesmoke">
     <b style="font-size: 18px"><a :href="'#/detail/' + name" >{{name}}</a></b><br>
     <b style="font-size: 14px">H-index: <span style="color: #6bcaff">{{hindex}}</span>&nbsp |
       Publish: <span style="color: #6bcaff">{{publish}}</span>&nbsp |

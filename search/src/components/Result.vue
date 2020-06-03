@@ -177,6 +177,7 @@
         key_type = 'author';
       else if (this.search_type === 'author_field')
         key_type = 'author_field';
+      this.isPaper = key_type === 'paper';
       // this.$axios
         // .get('http://123.57.231.102:8080/search?keyword=' + this.query + '&keytype=' + key_type)
       axiosInstance({ url: '/backend_search?keyword=' + this.query + '&keytype=' + key_type })
