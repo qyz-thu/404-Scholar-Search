@@ -179,7 +179,7 @@
       },
       select_field: function () {
         // console.log(this.selected_field);
-        if (this.select_field === '')
+        if (this.selected_field === '')
           return ;
         axiosInstance({ url: '/backend_search?keyword=' + this.query+ '&keytype=author_adv&fields='+this.selected_field })
           .then(response => {
