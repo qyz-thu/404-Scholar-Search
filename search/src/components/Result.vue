@@ -158,6 +158,8 @@
       },
       select_field: function () {
         // console.log(this.selected_field);
+        if (this.select_field === '')
+          return ;
         this.$router.push('/result/'+this.query+'/author_adv'+'/'+this.selected_field);
         axiosInstance({ url: '/backend_search?keyword=' + this.query+ '&keytype=author_adv&fields='+this.selected_field })
           .then(response => {
