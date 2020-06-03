@@ -48,12 +48,13 @@
           <div v-if="isPaper">
             <img src="../assets/CVPR.jpg" width="80%" style="margin-top: 20px; margin-left: 20px">
           </div>
-          <div v-else>
-            寻找到<b style="color: #6bcaff">{{author_num}}</b>位学者，
+          <div v-else style="font-size: 16px">
+            寻找到<b style="color: #6bcaff">{{author_num}}</b>位学者，<br>
             共来自<b style="color: #6bcaff">{{field_num}}</b>个领域.<br>
-            其中，发表论文最多的有<b style="color: #6bcaff">{{max_pc}}</b>篇，
+            其中，发表论文最多的有<b style="color: #6bcaff">{{max_pc}}</b>篇，<br>
             引用数最高的有<b style="color: #6bcaff">{{avg_cn}}</b>次引用。<br>
-            平均发表了<b style="color: #6bcaff">{{avg_pc}}</b>篇论文，有<b style="color: #6bcaff">{{max_cn}}</b>次引用。
+            平均发表了<b style="color: #6bcaff">{{avg_pc}}</b>篇论文，<br>
+            有<b style="color: #6bcaff">{{avg_cn}}</b>次引用。
             <br>
           </div>
           <b></b>
