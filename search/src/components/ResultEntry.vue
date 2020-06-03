@@ -14,7 +14,9 @@
 
   <div v-else style="padding: 10px; border: 1px; height: 150px">
     <b style="font-size: 18px"><a :href="'#/detail/' + name" >{{name}}</a></b><br>
-    <b style="font-size: 14px">H-index: {{hindex}}&nbsp Publish: {{publish}}&nbsp Citation: {{citation}}</b>
+    <b style="font-size: 14px">H-index: <span style="color: #6bcaff">{{hindex}}</span>&nbsp |
+      Publish: <span style="color: #6bcaff">{{publish}}</span>&nbsp |
+      Citation: <span style="color: #6bcaff">{{citation}}</span></b>
     <div><b style="font-size: 14px">Research fields</b>:
       <span v-for="f in research_field" :key="f"><el-tag v-on:click="click_field(f)" style="cursor: pointer">{{f}}</el-tag>&nbsp</span>
     </div><br>
