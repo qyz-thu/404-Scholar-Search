@@ -168,9 +168,15 @@
     },
     mounted() {
       console.log(this.search_type);
-      this.isPaper = this.search_type === "paper";
       this.no_result_warning = "Searching...";
-      let key_type = this.isPaper? 'paper': 'author';
+      //let key_type = this.isPaper? 'paper': 'author';
+      var key_type = 'author';
+      if (this.search_type === 'paper')
+        key_type = 'paper';
+      else if (this.search_type === 'author')
+        key_type = 'author';
+      else if (this.search_type === 'author_field')
+        key_type = 'author_field';
       // this.$axios
         // .get('http://123.57.231.102:8080/search?keyword=' + this.query + '&keytype=' + key_type)
       axiosInstance({ url: '/backend_search?keyword=' + this.query + '&keytype=' + key_type })
