@@ -19,7 +19,6 @@
       <span v-for="f in research_field" :key="f"><el-tag v-on:click="click_field(f)" style="cursor: pointer">{{f}}</el-tag>&nbsp</span>
     </div>
   </div>
-  <el-divider></el-divider>
 
 </template>
 

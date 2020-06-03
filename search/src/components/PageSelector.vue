@@ -1,22 +1,31 @@
 <template xmlns="http://www.w3.org/1999/html">
   <div>
-    <p v-if="isPaper">
-      <ResultEntry @change_author="change_author"  v-for="paper in current_page" v-bind:key="paper.title"
-                   :is-paper="true" v-bind:title="paper.title" v-bind:field="paper.fields"
-                   v-bind:time="paper.time" v-bind:author="paper.authors"
-                   @mouseover.native="highlight(paper)" @mouseleave.native="de_highlight">
-        {{paper}}
-      </ResultEntry>
-    </p>
+    <div v-if="isPaper">
+      <div v-for="paper in current_page" v-bind:key="paper.title">
+        <ResultEntry @change_author="change_author"
+                     :is-paper="true" v-bind:title="paper.title" v-bind:field="paper.fields"
+                     v-bind:time="paper.time" v-bind:author="paper.authors"
+                     @mouseover.native="highlight(paper)" @mouseleave.native="de_highlight">
+          {{paper}}
+        </ResultEntry>
+        <el-divider></el-divider>
+      </div>
 
-    <p v-else>
-      <ResultEntry @change_author="change_author" @click_field="click_field" v-for="people in current_page" v-bind:key="people.name"
-                   v-bind:name="people.name"
-                   v-bind:hindex="people.H_index"
-                   v-bind:research_field="people.researchFields" v-bind:publish="people.pc" v-bind:citation="people.cn" >
+    </div>
 
-      </ResultEntry>
-    </p><br>
+    <div v-else>
+      <div v-for="people in current_page" v-bind:key="people.name">
+    <ResultEntry @change_author="change_author" @click_field="click_field"
+                 v-bind:name="people.name"
+                 v-bind:hindex="people.H_index"
+                 v-bind:research_field="people.researchFields" v-bind:publish="people.pc" v-bind:citation="people.cn" >
+
+    </ResultEntry>
+        <el-divider></el-divider>
+      </div>
+  </div>
+
+  <br>
 
     <p style="text-align: center; font-family: Arial,serif; color: #909399">
       <el-button v-on:click="toNext" v-if='has_next' type="info" size="small">Next</el-button>&nbsp &nbsp
