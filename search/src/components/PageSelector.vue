@@ -40,7 +40,7 @@
       props: ['entries', "isPaper"],
       data: function () {
           return {
-            page_size: 6,
+            page_size: 5,
             page_index: 0,
             page_input: 1,
           }
