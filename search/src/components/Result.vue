@@ -46,7 +46,7 @@
 
         <td style="width: 20%; margin-left: 20px">
           Space for JOJO references<br>
-          <img src="../assets/jojo.jpg" width="80%" style="margin-top: 20px">
+          <img src="../assets/CVPR.jpg" width="80%" style="margin-top: 20px; margin-left: 20px">
         </td>
       </tr>
 
