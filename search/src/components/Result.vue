@@ -160,12 +160,13 @@
         // console.log(this.selected_field);
         if (this.select_field === '')
           return ;
-        this.$router.push('/result/'+this.query+'/author_adv'+'/'+this.selected_field);
+        //this.$router.push('/result/'+this.query+'/author_adv'+'/'+this.selected_field);
         axiosInstance({ url: '/backend_search?keyword=' + this.query+ '&keytype=author_adv&fields='+this.selected_field })
           .then(response => {
             this.results = response.data.result;
             this.no_result_warning = "Sorry, we found no result matching " + this.key_word;
-          })
+          });
+        this.$forceUpdate();
       }
     },
     mounted() {
