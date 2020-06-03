@@ -103,8 +103,6 @@
         if (this.new_query === "")
           alert("you have entered nothing!");
         else {
-          // this.isPaper = this.search_type === "paper";
-          // let key_type = this.isPaper? 'paper': 'author';
           if (this.new_query.length >= max_query_length)
             this.new_query = this.new_query.substr(0, max_query_length);   // truncate overly long queries
           let q = this.$route.params.query;
@@ -160,7 +158,6 @@
         // console.log(this.selected_field);
         if (this.select_field === '')
           return ;
-        //this.$router.push('/result/'+this.query+'/author_adv'+'/'+this.selected_field);
         axiosInstance({ url: '/backend_search?keyword=' + this.query+ '&keytype=author_adv&fields='+this.selected_field })
           .then(response => {
             this.results = response.data.result;

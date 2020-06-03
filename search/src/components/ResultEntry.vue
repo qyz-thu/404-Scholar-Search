@@ -2,8 +2,8 @@
   <div v-if='isPaper' style="padding: 10px; border: 1px; height: 100px">
     <b style="font-size: 18px"><a :href="'#/paper/' + title" >{{title}}</a></b><br>
     <div>
-      <b>Time</b>: {{time}} &nbsp
-      <b>Field</b>: <a v-for="f in field">{{f}}; &nbsp</a><br>
+      <b>Time</b>: {{time}} &nbsp <br>
+<!--      <b>Field</b>: <a v-for="f in field">{{f}}; &nbsp</a><br>-->
       <b>Author</b>:
       <span v-for="aut in author"><el-tag v-on:click="click_author(aut)" :href="'#/detail/' + aut" style="cursor: pointer">
         {{aut}}</el-tag>&nbsp
@@ -19,7 +19,7 @@
       Citation: <span style="color: #6bcaff">{{citation}}</span></b>
     <div><b style="font-size: 14px">Research fields</b>:
       <span v-for="f in research_field" :key="f"><el-tag v-on:click="click_field(f)" style="cursor: pointer">{{f}}</el-tag>&nbsp</span>
-    </div><br>
+    </div>
     <el-divider></el-divider>
   </div>
 </template>
