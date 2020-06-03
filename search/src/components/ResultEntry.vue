@@ -1,5 +1,5 @@
 <template xmlns="http://www.w3.org/1999/html">
-  <div v-if='isPaper' style="padding: 10px; border: 1px; height: 100px; background-color: #dee1e6">
+  <div v-if='isPaper' style="padding: 10px; border: 1px; height: 100px; background-color: #e8ebf0">
     <b style="font-size: 18px"><a :href="'#/paper/' + title" >{{title}}</a></b><br>
     <div>
       <b>Time</b>: {{time}} &nbsp <br>
@@ -10,7 +10,7 @@
     </div>
   </div>
 
-  <div v-else style="padding: 10px; border: 1px; height: 130px; background-color: #dee1e6">
+  <div v-else style="padding: 10px; border: 1px; height: 130px; background-color: #e8ebf0">
     <b style="font-size: 18px"><a :href="'#/detail/' + name" >{{name}}</a></b><br>
     <b style="font-size: 14px">H-index: <span style="color: #6bcaff">{{hindex}}</span>&nbsp |
       Publish: <span style="color: #6bcaff">{{publish}}</span>&nbsp |
