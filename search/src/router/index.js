@@ -5,6 +5,7 @@ import Homepage from '../components/Homepage'
 import Result from "../components/Result";
 import Detail from "../components/Detail";
 import Field from "../components/Field";
+import Paper from "../components/Paper";
 
 Vue.use(Router);
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/field/:field',
       name: 'Field',
       component: Field
+    },
+    {
+      path: '/paper/:title',
+      name: 'Paper',
+      component: Paper
     }
 
   ]
