@@ -10,6 +10,8 @@
       <tr style="vertical-align: top">
         <td style="width: 20%; text-align: center; padding-right: 30px">
           <p style="font-size: 20px">H-index: <b style="color: #303133">{{h_index}}</b></p>
+          <p style="font-size: 20px">Publication: <b style="color: #303133">{{publish_cn}}</b></p>
+          <p style="font-size: 20px">Citation: <b style="color: #303133">{{citation}}</b></p>
           <p style="font-size: 20px">Research Fields:</p>
           <p v-for="field in research_fields"><el-tag style="cursor: pointer">{{field}}</el-tag></p>
         </td>
@@ -70,6 +72,8 @@
         papers: [],
         new_query: "",
         h_index: 0,
+        publish_cn: 0,
+        citation: 0,
         search_type: 'author',
         paper_num: [],
       }
@@ -118,6 +122,8 @@
             this.research_fields = response.data.result.researchFields;
             this.papers = response.data.result.papers;
             this.h_index = response.data.result.H_index;
+            this.publish_cn = response.data.result.pc;
+            this.citation = response.data.result.cn;
             this.paper_num = response.data.result.paper_cnt;
             console.log(this.orgOptions);
           }
@@ -131,21 +137,6 @@
           }
         })
         .catch(error =>(console.log(error)));
-      // this.orgOptions = {
-      //   xAxis: {
-      //     type: 'category',
-      //     data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010',
-      //       '2011', '2012', '2013', '2014', '2015']
-      //   },
-      //   yAxis: {
-      //     type: 'value'
-      //   },
-      //   series: [{
-      //     data: this.paper_num,
-      //     type: 'line',
-      //     smooth: true
-      //   }]
-      // };
       this.$forceUpdate();
     },
     mounted() {
@@ -177,6 +168,8 @@
               this.papers = response.data.result.papers;
               this.title = this.$route.params.title;
               this.h_index = response.data.result.H_index;
+              this.publish_cn = response.data.result.pc;
+              this.citation = response.data.result.cn;
               this.paper_num = response.data.result.paper_cnt;
 
               this.$forceUpdate();
@@ -207,23 +200,10 @@
             this.research_fields = response.data.result.researchFields;
             this.papers = response.data.result.papers;
             this.h_index = response.data.result.H_index;
+            this.publish_cn = response.data.result.pc;
+            this.citation = response.data.result.cn;
             this.paper_num = response.data.result.paper_cnt;
             this.title = aut;
-            // this.orgOptions = {
-            //   xAxis: {
-            //     type: 'category',
-            //     data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010',
-            //       '2011', '2012', '2013', '2014', '2015']
-            //   },
-            //   yAxis: {
-            //     type: 'value'
-            //   },
-            //   series: [{
-            //     data: this.paper_num,
-            //     type: 'line',
-            //     smooth: true
-            //   }]
-            // };
             this.$forceUpdate();
           }
           else {
